@@ -41,8 +41,13 @@ a{
     border-radius: 10px;
     background-color: whitesmoke;
     padding: 3%;
-    
     text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.altas:hover,.bajas:hover,.consultar:hover{
+    background-color: rgb(226, 226, 226);
+    transform: scale(1.1);
 }
 
 /*FOOTER*/
