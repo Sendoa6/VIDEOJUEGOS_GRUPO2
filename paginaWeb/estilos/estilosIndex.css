@@ -1,0 +1,72 @@
+*{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body{
+    background-color: rgb(233, 225, 233);
+    margin: 0;
+    padding: 0;
+}
+
+/*HEADER*/
+header{
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+    margin: 0;
+    align-items: center;
+    border-bottom: solid;
+}
+
+/*CUERPO*/
+h2{
+    text-align: center;
+    margin-top: 5%;
+}
+
+.secciones{
+    display: flex;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+    margin: 7%;
+    margin-top: 5%;
+}
+
+.altas,.bajas,.consultar{
+    box-shadow: 10px 10px 25px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    padding: 3%;
+    
+    text-align: center;
+}
+
+/*FOOTER*/
+footer{
+    background-color: black;
+    padding: 3%;
+    margin-top: 5%
+}
+
+footer p, footer a{
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+}
+
+footer a{
+    text-decoration: underline;
+}
+
+.ordenarFooter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imgCreativeCommons{
+    text-align: end;
+}
