@@ -57,3 +57,25 @@ th, td {
 th {
     background: #ff5fea;
 }
+
+.botonVolver{
+    display: inline-block;
+    box-shadow: 10px 10px 25px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    padding: 1%;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.botonVolver:hover{
+    background-color: rgb(226, 226, 226);
+    transform: scale(1.1);
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+    margin: 7%;
+    margin-top: 5%;
+}

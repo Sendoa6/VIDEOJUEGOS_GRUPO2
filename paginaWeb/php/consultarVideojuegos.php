@@ -4,6 +4,9 @@
         <h1>GESTIÓN DE VIDEOJUEGOS</h1>
         <img src="../imagenes/logoAltF4.png" alt="Alt+F4" width="6%">
     </header>
+    <div class="cajaVolver">
+        <a href="index.html" class="botonVolver">⬅️Volver</a>
+    </div>
 <?php
     include '../DataBase/conexiones.php';
     $query = "SELECT v.id_videojuego, v.titulo, v.anio_publicacion, v.estudio_desarrollo, v.plataforma, c.precio_nuevo, c.precio_seminuevo
@@ -40,7 +43,7 @@
         echo "<p>No hay Videojuegos registrados.</p>";
     }
 ?>
-    <a href="../html/index.html"><button>Volver al inicio</button></a>
+        
     <footer>
         <div class="ordenarFooter">
             <div>
