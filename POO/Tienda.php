@@ -2,6 +2,8 @@
     class Tienda{
         protected $id_tienda;
         protected $direccion;
+        protected $trabajadores = [];
+        protected $almacenes = [];
 
         public function __construct($pIdTienda,$pDireccion) {
             $this->id_tienda = $pIdTienda;
@@ -22,6 +24,17 @@
 
         public function setDireccion($pDireccion) {
             $this->direccion = $pDireccion;
+        }
+        public function addTrabajador($trabajador) {
+            if ($trabajador instanceof Trabajador){
+                array_push($this->trabajadores, $trabajador);
+            }
+        }
+
+        public function addAlmacen($almacen) {
+            if ($almacen instanceof Almacen){
+                array_push($this->almacenes, $almacen);
+            }
         }
 
 

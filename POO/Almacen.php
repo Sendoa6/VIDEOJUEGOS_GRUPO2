@@ -2,6 +2,7 @@
     class Almacen extends Tienda{
         protected $id_almacen;
         protected $id_tienda;
+        protected $copias = [];
 
 
         public function __construct($pIdAlmacen,$pIdTienda) {
@@ -25,6 +26,11 @@
             $this->id_tienda = $pId_tienda;
         }
 
+        public function addCopia($copia) {
+            if ($copia instanceof Copia){
+                array_push($this->copias, $copia);
+            }
+        }
 
     }
 
