@@ -26,7 +26,7 @@
 
 
 
-    <h2>Buscador de juegos</h2>
+    <h2>Buscador de ID</h2>
 
     <form method="GET">
         <input type="text" name="buscador" placeholder="Escribe el nombre..." required>
