@@ -6,13 +6,17 @@ class Videojuego{
     protected $anio_publicacion;
     protected $estudio_desarrollo;
     protected $plataforma; 
+    protected $precio_nuevo;
+    protected $precio_seminuevo;
 
-    public function __construct($pIdVideojuego,$pTitulo,$pAnioPublicacion,$pEstudioDesarrollo,$pPlataforma) {
+    public function __construct($pIdVideojuego,$pTitulo,$pAnioPublicacion,$pEstudioDesarrollo,$pPlataforma,$pPrecioNuevo,$pPrecioSemiNuevo) {
         $this->id_videojuego = $pIdVideojuego;
         $this->titulo = $pTitulo;
         $this->anio_publicacion = $pAnioPublicacion;
         $this->estudio_desarrollo = $pEstudioDesarrollo;
         $this->plataforma = $pPlataforma;
+        $this->precio_nuevo = $pPrecioNuevo;
+        $this->precio_seminuevo = $pPrecioSemiNuevo;
     }
 
     public function getIdVideojuego() {
@@ -53,6 +57,22 @@ class Videojuego{
 
     public function setPlataforma($pPlataforma) {
         $this->plataforma = $pPlataforma;
+    }
+
+    public function getPrecioNuevo() {
+        return $this->precio_nuevo;
+    }
+
+    public function setPrecioNuevo($pPrecioNuevo) {
+        $this->precio_nuevo = $pPrecioNuevo;
+    }
+
+    public function getPrecioSemiNuevo() {
+        return $this->precio_seminuevo;
+    }
+
+    public function setPrecioSemiNuevo($pPrecioSemiNuevo) {
+        $this->precio_seminuevo = $pPrecioSemiNuevo;
     }
 }
 ?>

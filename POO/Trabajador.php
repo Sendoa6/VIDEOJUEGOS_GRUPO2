@@ -8,9 +8,10 @@ class Trabajador extends Tienda{
     protected $email;
     protected $usuario;
     protected $contrasena_hash;
+    protected $admin;
     protected $id_tienda;
 
-    public function __construct($pId_trabajador,$pNombre,$pApellidos,$pDni,$pFecha_nacimiento,$pEmail,$pUsuario,$pContrasena_hash,$pIdTienda) {
+    public function __construct($pId_trabajador,$pNombre,$pApellidos,$pDni,$pFecha_nacimiento,$pEmail,$pUsuario,$pContrasena_hash,$pAdmin,$pIdTienda) {
         $this->id_trabajador = $pId_trabajador;
         $this->nombre = $pNombre;
         $this->apellidos = $pApellidos;
@@ -19,6 +20,7 @@ class Trabajador extends Tienda{
         $this->email = $pEmail;
         $this->usuario = $pUsuario;
         $this->contrasena_hash = hash('sha256', $pContrasena_hash);
+        $this->admin = $pAdmin;
         $this->id_tienda = $pIdTienda;
     }
 
@@ -85,7 +87,13 @@ class Trabajador extends Tienda{
     public function setContrasenaHash($pContrasena_hash) {
         $this->contrasena_hash = $pContrasena_hash;
     }
+    public function getAdmin() {
+        return $this->admin;
+    }
 
+    public function setAdmin($pAdmin) {
+        $this->admin = $pAdmin;
+    }
     public function getIdTienda() {
         return $this->id_tienda;
     }
