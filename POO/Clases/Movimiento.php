@@ -67,5 +67,7 @@ class Movimiento extends Trabajador{
     public function setIdCopia($pIdCopia) {
         $this->id_copia = $pIdCopia;
     }
+
+        //ToDO funcion que cargue Movimientos de la BD
 }
 ?>

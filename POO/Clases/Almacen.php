@@ -1,4 +1,5 @@
 <?php
+    include '../BD/Conexiones.php';
     class Almacen extends Tienda{
         protected $id_almacen;
         protected $id_tienda;
@@ -23,6 +24,8 @@
         public function setIdTienda($pId_tienda) {
             $this->id_tienda = $pId_tienda;
         }
+
+        //ToDO funcion que cargue almacenes de la BD
 
     }
 

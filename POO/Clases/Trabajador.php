@@ -101,5 +101,7 @@ class Trabajador extends Tienda{
     public function setIdTienda($pId_tienda) {
         $this->id_tienda = $pId_tienda;
     }
+
+        //ToDO funcion que cargue trabajadores de la BD
 }
 ?>

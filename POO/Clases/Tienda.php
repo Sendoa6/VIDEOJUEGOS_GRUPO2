@@ -23,6 +23,7 @@
         public function setDireccion($pDireccion) {
             $this->direccion = $pDireccion;
         }
+        //ToDO funcion que cargue Tiendas de la BD
 
     }
 

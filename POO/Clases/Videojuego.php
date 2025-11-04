@@ -74,5 +74,7 @@ class Videojuego{
     public function setPrecioSemiNuevo($pPrecioSemiNuevo) {
         $this->precio_seminuevo = $pPrecioSemiNuevo;
     }
+
+        //ToDO funcion que cargue videojuegos de la BD
 }
 ?>

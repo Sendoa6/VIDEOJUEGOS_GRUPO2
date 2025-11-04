@@ -63,5 +63,7 @@ class Copia extends Almacen{
     public function setIdVideojuego($pIdVideojuego) {
         $this->id_videojuego = $pIdVideojuego;
     }
+
+    //ToDO funcion que cargue Copias de la BD
 }
 ?>

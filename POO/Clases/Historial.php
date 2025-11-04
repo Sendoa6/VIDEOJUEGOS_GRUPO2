@@ -47,5 +47,6 @@ class Copia extends Trabajador {
     public function setIdTrabajador($id_trabajador) {
         $this->id_trabajador = $id_trabajador;
     }
+        //ToDO funcion que cargue Historiales de la BD
 }
 ?>
