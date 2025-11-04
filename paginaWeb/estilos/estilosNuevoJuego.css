@@ -46,10 +46,6 @@ footer a{
 }
 
 /*---------------------NUEVO JUEGO----------------------*/
-.tituloForm{
-    margin-top: 0;
-}
-
 .formularioNuevo{
     display: flex;
     justify-content: center;   
@@ -60,7 +56,7 @@ footer a{
 .botonVolver{
     display: inline-block;
     box-shadow: 10px 10px 25px;
-    border-radius: 10px;
+    border-radius: 50px;
     background-color: whitesmoke;
     padding: 1%;
     text-align: center;
@@ -77,9 +73,9 @@ a{
     color: inherit;
     margin: 7%;
     margin-top: 5%;
+    margin-bottom: 0;
 }
 
 h2{
     text-align: center;
-    margin-top: 5%;
 }

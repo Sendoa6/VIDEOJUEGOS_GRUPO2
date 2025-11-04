@@ -47,10 +47,10 @@
                                 VALUES ('$nombre', '$ano_publicacion', '$estudio_desarrollo', '$plataformas')";
 
             if (mysqli_query($conexion, $queryVideojuego)) {
-                // Obtener el id del videojuego recién insertado
+                //Obtener el id del videojuego recién insertado
                 $idVideojuego = mysqli_insert_id($conexion);
 
-                // 2️⃣ Insertar la copia (con precios y unidades por defecto)
+                //Insertar la copia (con precios y unidades por defecto)
                 $queryCopia = "INSERT INTO copia(id_videojuego, precio_nuevo, precio_seminuevo, precio_compra, unidades)
                             VALUES ('$idVideojuego', '$precio', '$precio_seminuevo', '$precio_compra', 1)";
 

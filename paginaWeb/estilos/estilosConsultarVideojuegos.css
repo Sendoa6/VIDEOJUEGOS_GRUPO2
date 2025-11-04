@@ -43,25 +43,12 @@ footer a{
 .imgCreativeCommons{
     text-align: end;
 }
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-th, td {
-    border: 4px solid #000000;
-    padding: 12px;
-    text-align: left;
-    background: #fad2ff;
-}
-th {
-    background: #ff5fea;
-}
 
+/*-------------CONSULTAR VIDEOJUEGOS-----------*/
 .botonVolver{
     display: inline-block;
     box-shadow: 10px 10px 25px;
-    border-radius: 10px;
+    border-radius: 50px;
     background-color: whitesmoke;
     padding: 1%;
     text-align: center;
@@ -78,4 +65,33 @@ a{
     color: inherit;
     margin: 7%;
     margin-top: 5%;
+    margin-bottom: 0;
+}
+
+h2{
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 5%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 10px 10px 30px;
+}
+
+th, td {
+    border: 4px solid #000000;
+    padding: 10px;
+    text-align: left;
+    background-color: whitesmoke;
+}
+
+th {
+    background-color: rgb(176, 31, 129);
+}
+
+.tabla{
+    padding-left: 10%;
+    padding-right: 10%;
 }
