@@ -25,11 +25,10 @@
 
             #Todos los datos que quiero insertar
             $titulo=$_POST["titulo"];
-            $precio=$_POST["precio"];
-            $precio_seminuevo=$_POST["precioSeminuevo"];
-            $precio_compra=$_POST["precioCompra"];
-            $ano_publicacion=$_POST["anoPublicacion"];
-            $estudio_desarrollo=$_POST["estudioDesarrollo"];
+            $precio_nuevo=$_POST["precio_nuevo"];
+            $precio_seminuevo=$_POST["precio_seminuevo"];
+            $ano_publicacion=$_POST["ano_publicacion"];
+            $estudio_desarrollo=$_POST["estudio_desarrollo"];
             $plataforma = $_POST["plataforma"];
 
             //Insert
@@ -39,8 +38,8 @@
                 echo "Ya existe";
                 exit();
             }else{
-            $queryVideojuego = "INSERT INTO videojuego (titulo, anio_publicacion, estudio_desarrollo, plataforma)
-                                VALUES ('$titulo', '$ano_publicacion', '$estudio_desarrollo', '$plataformas')";
+            $queryVideojuego = "INSERT INTO videojuego (titulo, anio_publicacion, estudio_desarrollo, plataforma, precio_nuevo, precio_seminuevo)
+                                VALUES ('$titulo', '$ano_publicacion', '$estudio_desarrollo', '$plataformas', '$precio_nuevo', '$precio_seminuevo')";
             }
             if (mysqli_query($conexion, $queryVideojuego)) {
                 //Obtener el id del videojuego recién insertado

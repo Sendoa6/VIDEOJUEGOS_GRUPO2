@@ -82,7 +82,7 @@ if (!empty($resultados)): ?>
 
 
     <div class="formularioNuevo">
-        <form action="../php/insertarNuevoVideojuego.php" method="post" class="nuevo">
+        <form action="../php/tratarNuevaCopia.php" method="post" class="nuevo">
             ID del videojuego:
             <input type="number" name="id_videojuego" required>
             <br>
@@ -109,43 +109,6 @@ if (!empty($resultados)): ?>
             <button type="submit">Envíar</button>
         </form>
     </div>
-
-
-    <!-- TRATADO DEL FORMULARIO HTML -->
-
-    <?php
-        $id_videojuego=$_POST["id_videojuego"];
-        $precio_compra=$_POST["precio_compra"];
-        $nuevo = $_POST['nuevo'];
-        $unidades = $_POST["unidades"];
-        if ($nuevo === "si") {
-            $nuevo = true;
-        } else {
-            $nuevo = false;
-        }
-            
-        $check = mysqli_query($conexion, "SELECT id_videojuego FROM copia WHERE id_videojuego = '$id_videojuego'");
-        if (mysqli_num_rows($check) > 0) {
-            $sqlUpdate= "UPDATE copia SET unidades = unidades + '$unidades' WHERE id_videojuego = '$id_videojuego'";
-            mysqli_query($conexion, $sqlUpdate);
-            header("Refresh: 0.1; url=formulario.php");
-            exit;
-
-
-        }else{
-            $sqlInsert = "INSERT INTO copia (id_videojuego, precio_compra, nuevo, unidades) VALUES ('$id_videojuego', '$precio_compra', '$nuevo', '$unidades')";
-        }
-        
-
-
-        $result = mysqli_query($conexion, $sqlInsert);
-        header("Refresh: 0.1; url=formulario.php");
-    
-
-        ?>
-
-
-
 
     <footer>
         <div class="ordenarFooter">
