@@ -16,7 +16,7 @@
     <div class="tabla">
         <?php
             include '../DataBase/conexiones.php';
-            $query = "SELECT v.id_videojuego, v.titulo, v.anio_publicacion, v.estudio_desarrollo, v.plataforma, c.precio_nuevo, c.precio_seminuevo
+            $query = "SELECT v.id_videojuego, v.titulo, v.anio_publicacion, v.estudio_desarrollo, v.plataforma, c.precio_nuevo, c.precio_seminuevo, c.unidades
             FROM videojuego v JOIN copia c ON v.id_videojuego = c.id_videojuego;";
             $result = mysqli_query($conexion, $query);
 
@@ -30,6 +30,7 @@
                         <th>Plataforma</th>
                         <th>Precio Nuevo</th>
                         <th>Precio Seminuevo</th>
+                        <th>Unidades</th>
                     </tr>";
 
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -41,6 +42,7 @@
                     echo "<td>" . htmlspecialchars($row['plataforma']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['precio_nuevo']) . " €"."</td>";
                     echo "<td>" . htmlspecialchars($row['precio_seminuevo']) ." €". "</td>";
+                    echo "<td>" . htmlspecialchars($row['unidades']). "</td>";
                     echo "</tr>";
                 }
 
