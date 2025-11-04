@@ -24,7 +24,7 @@
             or die("Problemas con la conexión");
 
             #Todos los datos que quiero insertar
-            $titulo=$_RE["titulo"];
+            $titulo=$_POST["titulo"];
             $precio=$_POST["precio"];
             $precio_seminuevo=$_POST["precioSeminuevo"];
             $precio_compra=$_POST["precioCompra"];
