@@ -24,31 +24,27 @@
             or die("Problemas con la conexión");
 
             #Todos los datos que quiero insertar
-            $nombre=$_POST["nombre"];
+            $titulo=$_RE["titulo"];
             $precio=$_POST["precio"];
             $precio_seminuevo=$_POST["precioSeminuevo"];
             $precio_compra=$_POST["precioCompra"];
             $ano_publicacion=$_POST["anoPublicacion"];
             $estudio_desarrollo=$_POST["estudioDesarrollo"];
-            $plataformas = $_POST["plataformas"];
+            $plataforma = $_POST["plataforma"];
 
             //Insert
-            $queryVideojuego = "INSERT INTO videojuego (titulo, anio_publicacion, estudio_desarrollo, plataforma)
-                                VALUES ('$nombre', '$ano_publicacion', '$estudio_desarrollo', '$plataformas')";
+            $check = mysqli_query($conexion, "SELECT * FROM videojuego WHERE titulo='$titulo' AND plataforma='$plataforma'");
 
+            if (mysqli_num_rows($check) > 0) {
+                echo "Ya existe";
+                exit();
+            }else{
+            $queryVideojuego = "INSERT INTO videojuego (titulo, anio_publicacion, estudio_desarrollo, plataforma)
+                                VALUES ('$titulo', '$ano_publicacion', '$estudio_desarrollo', '$plataformas')";
+            }
             if (mysqli_query($conexion, $queryVideojuego)) {
                 //Obtener el id del videojuego recién insertado
                 $idVideojuego = mysqli_insert_id($conexion);
-
-                //Insertar la copia (con precios y unidades por defecto)
-                $queryCopia = "INSERT INTO copia(id_videojuego, precio_nuevo, precio_seminuevo, precio_compra, unidades)
-                            VALUES ('$idVideojuego', '$precio', '$precio_seminuevo', '$precio_compra', 1)";
-
-                if (mysqli_query($conexion, $queryCopia)) {
-                    echo "<h2 style='margin-top:7%; margin-bottom:10%;'>Videojuego agregado correctamente.</h2>";
-                } else {
-                    echo "<h2 style='margin-top:7%; margin-bottom:10%;'>Error al insertar en copia: " . mysqli_error($conexion) . "</h2>";
-                }
             } else {
                 echo "<h2 style='margin-top:7%; margin-bottom:10%;'>Error al insertar en videojuego: " . mysqli_error($conexion) . "</h2>";
             }

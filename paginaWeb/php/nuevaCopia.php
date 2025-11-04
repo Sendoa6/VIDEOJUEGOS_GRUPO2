@@ -25,7 +25,6 @@
  <!-- BUSCADOR DE ID POR NOMBRE DE JUEGO -->
 
 
-
     <h2>Buscador de ID</h2>
 
     <form method="GET">
@@ -98,11 +97,11 @@ if (!empty($resultados)): ?>
             <br>
             Es nuevo? :
             <label>
-            <input type="radio" name="estado" value="si" required>
+            <input type="radio" name="nuevo" value="si" required>
             Si
             </label>
             <label>
-            <input type="radio" name="estado" value="no">
+            <input type="radio" name="nuevo" value="no">
             No
             </label>
             <br>
@@ -115,12 +114,11 @@ if (!empty($resultados)): ?>
     <!-- TRATADO DEL FORMULARIO HTML -->
 
     <?php
-
         $id_videojuego=$_POST["id_videojuego"];
         $precio_compra=$_POST["precio_compra"];
+        $nuevo = $_POST['nuevo'];
         $unidades = $_POST["unidades"];
-        $estado = $_POST['estado'];
-        if ($estado === "si") {
+        if ($nuevo === "si") {
             $nuevo = true;
         } else {
             $nuevo = false;
