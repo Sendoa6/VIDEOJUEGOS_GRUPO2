@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestión de videojuegos</title>
-    <link rel="stylesheet" href="imagenes/">>
     <link rel="stylesheet" href="../estilos/estilosNuevoJuego.css">
+    <link rel="icon" href="../imagenes/favicon.png">
 </head>
 <body>
     <header>
@@ -14,7 +14,7 @@
     </header>
 
     <div class="cajaVolver">
-        <a href="../html/nuevoJuego.html" class="botonVolver">⬅️Volver</a>
+        <a href="../html/nuevoJuego.html" class="botonVolver"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="currentColor" d="m7.825 12l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T5.426 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7zm6.6 0l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T12.026 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7z"/></svg></a>
     </div>
 
     <main style="text-align:center; margin-top: 50px;">
@@ -30,17 +30,7 @@
             $precio_compra=$_POST["precioCompra"];
             $ano_publicacion=$_POST["anoPublicacion"];
             $estudio_desarrollo=$_POST["estudioDesarrollo"];
-
-            //Si hay varias plataformas las unimos en una sola cadena
-            if (isset($_POST["plataformas"])) {
-                if (is_array($_POST["plataformas"])) {
-                    $plataformas = implode(", ", $_POST["plataformas"]);
-                } else {
-                    $plataformas = $_POST["plataformas"];
-                }
-            } else {
-                $plataformas = "";
-            }
+            $plataformas = $_POST["plataformas"];
 
             //Insert
             $queryVideojuego = "INSERT INTO videojuego (titulo, anio_publicacion, estudio_desarrollo, plataforma)
@@ -55,12 +45,12 @@
                             VALUES ('$idVideojuego', '$precio', '$precio_seminuevo', '$precio_compra', 1)";
 
                 if (mysqli_query($conexion, $queryCopia)) {
-                    echo "<h2>Videojuego agregado correctamente.</h2>";
+                    echo "<h2 style='margin-top:7%; margin-bottom:10%;'>Videojuego agregado correctamente.</h2>";
                 } else {
-                    echo "<h2>Error al insertar en copia: " . mysqli_error($conexion) . "</h2>";
+                    echo "<h2 style='margin-top:7%; margin-bottom:10%;'>Error al insertar en copia: " . mysqli_error($conexion) . "</h2>";
                 }
             } else {
-                echo "<h2>Error al insertar en videojuego: " . mysqli_error($conexion) . "</h2>";
+                echo "<h2 style='margin-top:7%; margin-bottom:10%;'>Error al insertar en videojuego: " . mysqli_error($conexion) . "</h2>";
             }
 
             mysqli_close($conexion);

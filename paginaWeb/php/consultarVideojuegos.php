@@ -21,7 +21,7 @@
             $result = mysqli_query($conexion, $query);
 
             if ($result && mysqli_num_rows($result) > 0) {
-                echo "<table>";
+                echo "<table style='margin-bottom:10%;'>";
                 echo "<tr>  
                         <th>ID</th>
                         <th>Titulo</th>
@@ -39,8 +39,8 @@
                     echo "<td>" . htmlspecialchars($row['anio_publicacion']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['estudio_desarrollo']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['plataforma']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['precio_nuevo']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['precio_seminuevo']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['precio_nuevo']) . " €"."</td>";
+                    echo "<td>" . htmlspecialchars($row['precio_seminuevo']) ." €". "</td>";
                     echo "</tr>";
                 }
 
