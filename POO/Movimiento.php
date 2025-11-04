@@ -8,10 +8,10 @@ class Movimiento extends Trabajador{
     protected $id_trabajador;
     protected $id_copia;
 
-    public function __construct($pIdMovimiento,$pTipo,$pFecha,$pCantidad,$pIdTrabajador,$pIdCopia) {
+    public function __construct($pIdMovimiento,$pTipo,$pCantidad,$pIdTrabajador,$pIdCopia) {
         $this->id_movimiento = $pIdMovimiento;
         $this->tipo = $pTipo;
-        $this->fecha = $pFecha;
+        $this->fecha = date("d-m-y");
         $this->cantidad = $pCantidad;
         $this->id_trabajador = $pIdTrabajador;
         $this->id_copia = $pIdCopia;
@@ -41,6 +41,9 @@ class Movimiento extends Trabajador{
         $this->fecha = $pFecha;
     }
 
+    public function setFechaHoy() {
+        $this->fecha = date("d-m-y");
+    }
     public function getCantidad() {
         return $this->cantidad;
     }

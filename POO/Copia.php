@@ -2,18 +2,16 @@
 class Copia extends Almacen{
 
     protected $id_copia;
-    protected $precio_nuevo;
-    protected $precio_seminuevo;
     protected $precio_compra;
+    protected $nuevo;
     protected $unidades; 
     protected $id_almacen;
     protected $id_videojuego;
 
-    public function __construct($pIdCopia,$pPrecioNuevo,$pPrecioSemiNuevo,$pPrecioCompra,$pUnidades,$pIdAlmacen,$pIdVideojuego) {
+    public function __construct($pIdCopia,$pPrecioCompra,$pNuevo,$pUnidades,$pIdAlmacen,$pIdVideojuego) {
         $this->id_copia = $pIdCopia;
-        $this->precio_nuevo = $pPrecioNuevo;
-        $this->precio_seminuevo = $pPrecioSemiNuevo;
         $this->precio_compra = $pPrecioCompra;
+        $this->nuevo = $pNuevo;
         $this->unidades = $pUnidades;
         $this->id_almacen = $pIdAlmacen;
         $this->id_videojuego = $pIdVideojuego;
@@ -26,29 +24,20 @@ class Copia extends Almacen{
     public function setIdCopia($pIdCopia) {
         $this->id_copia = $pIdCopia;
     }
-
-    public function getPrecioNuevo() {
-        return $this->precio_nuevo;
-    }
-
-    public function setPrecioNuevo($pPrecioNuevo) {
-        $this->precio_nuevo = $pPrecioNuevo;
-    }
-
-    public function getPrecioSemiNuevo() {
-        return $this->precio_seminuevo;
-    }
-
-    public function setPrecioSemiNuevo($pPrecioSemiNuevo) {
-        $this->precio_seminuevo = $pPrecioSemiNuevo;
-    }
-
     public function getPrecioCompra() {
         return $this->precio_compra;
     }
 
     public function setPrecioCompra($pPrecioCompra) {
         $this->precio_compra = $pPrecioCompra;
+    }
+
+    public function getNuevo() {
+        return $this->nuevo;
+    }
+
+    public function setNuevo($pPrecioNuevo) {
+        $this->nuevo = $pPrecioNuevo;
     }
 
     public function getUnidades() {
