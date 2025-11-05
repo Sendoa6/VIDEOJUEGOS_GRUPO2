@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de videojuegos</title>
-    <link rel="stylesheet" href="../estilos/estilosNuevoJuego.css">
+    <link rel="stylesheet" href="../estilos/estilosNuevaCopia.css">
     <link rel="icon" href="../imagenes/favicon.png">
 
     <style>
         .autocomplete-list {
-            border: 1px solid #aaa;
             background: white;
             max-height: 180px;
             overflow-y: auto;
@@ -46,36 +45,38 @@
 
     <h2><i>Ingrese los datos de la copia:</i></h2>
 
-    <div class="formularioNuevo">
-        <form action="../php/tratarNuevaCopia.php" method="post" class="nuevo">
+    <div class="cajaFormularioCopia">
+        <div class="formularioNuevaCopia">
+            <form action="../php/tratarNuevaCopia.php" method="post" class="nuevo">
 
-            Nombre del videojuego:<br>
-            <input type="text" id="searchJuego" placeholder="Escribe el nombre..." autocomplete="off">
-            <div id="listaJuegos" class="autocomplete-list"></div>
+                Nombre del videojuego:<br>
+                <input class="inputNombre" type="text" id="searchJuego" placeholder="Escribe el nombre..." autocomplete="off">
+                <div id="listaJuegos" class="autocomplete-list"></div>
 
-            <input type="hidden" name="id_videojuego" id="id_videojuego" required>
+                <input type="hidden" name="id_videojuego" id="id_videojuego" required>
 
-            <br><br>
+                <br><br>
 
-            Precio de compra:
-            <input type="float" name="precio_compra" required>
-            <br><br>
+                Precio de compra:
+                <input type="float" name="precio_compra" required>
+                <br><br>
 
-            Unidades:
-            <input type="number" name="unidades" required>
-            <br><br>
+                Unidades:
+                <input type="number" name="unidades" required>
+                <br><br>
 
-            Es nuevo?
-            <label>
-                <input type="radio" name="nuevo" value="si" required> Sí
-            </label>
-            <label>
-                <input type="radio" name="nuevo" value="no"> No
-            </label>
-            <br><br>
+                Es nuevo?
+                <label>
+                    <input type="radio" name="nuevo" value="si" required> Sí
+                </label>
+                <label>
+                    <input type="radio" name="nuevo" value="no"> No
+                </label>
+                <br><br>
 
-            <button type="submit">Enviar</button>
-        </form>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
     </div>
 
     <footer>
