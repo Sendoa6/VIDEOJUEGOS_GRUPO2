@@ -45,11 +45,13 @@ footer a{
     text-align: end;
 }
 
-/*---------------------NUEVO JUEGO----------------------*/
-.formularioNuevo{
-    display: flex;
-    justify-content: center;   
-    align-items: center;
+/*--------------NUEVA COPIA--------------*/
+a{
+    text-decoration: none;
+    color: inherit;
+    margin: 7%;
+    margin-top: 5%;
+    margin-bottom: 0;
 }
 
 .botonVolver{
@@ -67,19 +69,17 @@ footer a{
     transform: scale(1.1);
 }
 
-a{
-    text-decoration: none;
-    color: inherit;
-    margin: 7%;
-    margin-top: 5%;
-    margin-bottom: 0;
-}
-
 h2{
     text-align: center;
 }
 
-.cajaFormulario{
+.formularioNuevaCopia{
+    display: flex;
+    justify-content: center;   
+    align-items: center;
+}
+
+.cajaFormularioCopia{
     background-color: whitesmoke;
     max-width: 600px;
     width: 90%;      
@@ -89,4 +89,8 @@ h2{
     padding: 3%;
     border-radius: 10px;
     border: solid 1px;
+}
+
+.inputEscondido{
+    border: none;
 }

@@ -20,46 +20,50 @@
         <a href="index.html" class="botonVolver"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="currentColor" d="M7 20q-.825 0-1.412-.587T5 18v-7.15l-2 1.525q-.35.25-.75.213T1.6 12.2t-.2-.75t.4-.65l8.975-6.875q.275-.2.588-.3t.637-.1t.638.1t.587.3L16 6.05V5.5q0-.625.438-1.062T17.5 4t1.063.438T19 5.5v2.85l3.2 2.45q.325.25.388.65t-.188.75t-.65.388t-.75-.213l-2-1.525V18q0 .825-.587 1.413T17 20h-1q-.825 0-1.412-.587T14 18v-2q0-.825-.587-1.412T12 14t-1.412.588T10 16v2q0 .825-.587 1.413T8 20zm3-9.975h4q0-.8-.6-1.313T12 8.2t-1.4.513t-.6 1.312"/></svg></a>
     </div>
     <h2><i>Ingrese los datos del videojuego:</i></h2>
-    <div class="formularioNuevo">
-        <form action="../php/insertarNuevoVideojuego.php" method="post" class="nuevo">
-            Nombre del videojuego:
-            <input type="text" name="titulo" required>
-            <br>
-            <br>
-            Precio: <br>
-            <input type="float" name="precio_nuevo" required>
-            <br>
-            <br>
-            Precio seminuevo:<br>
-            <input type="float" name="precio_seminuevo" required>
-            <br>
-            <br>
-            Año de publicación:
-            <input type="number" name="ano_publicacion" required>
-            <br>
-            <br>
-            Estudio de desarrollo:
-            <input type="text" name="estudio_desarrollo" required>
-            <br>
-            <br>
-            Plataforma del videojuego: <br>
-            <input type="radio" name="plataforma" value="pc">PC
-            <input type="radio" name="plataforma" value="ps5">PS5
-            <input type="radio" name="plataforma" value="ps4">PS4
-            <input type="radio" name="plataforma" value="ps3">PS3
-            <input type="radio" name="plataforma" value="ps2">PS2
-            <input type="radio" name="plataforma" value="psVr2">PS VR 2 <br>
-            <input type="radio" name="plataforma" value="xboxSeriesX">Xbox Series X
-            <input type="radio" name="plataforma" value="xboxOne">Xbox One
-            <input type="radio" name="plataforma" value="nintendoSwitch">Nintendo Switch
-            <input type="radio" name="plataforma" value="wiiU">Wii U
-            <input type="radio" name="plataforma" value="wii">Wii
-            <input type="radio" name="plataforma" value="3DS">3DS
-            <br>
-            <br>
-            <button type="submit">Envíar</button>
-        </form>
+
+    <div class="cajaFormulario">
+        <div class="formularioNuevo">
+            <form action="../php/insertarNuevoVideojuego.php" method="post" class="nuevo">
+                Nombre del videojuego:
+                <input type="text" name="titulo" required>
+                <br>
+                <br>
+                Precio: <br>
+                <input type="float" name="precio_nuevo" required>
+                <br>
+                <br>
+                Precio seminuevo:<br>
+                <input type="float" name="precio_seminuevo" required>
+                <br>
+                <br>
+                Año de publicación:
+                <input type="number" name="ano_publicacion" required>
+                <br>
+                <br>
+                Estudio de desarrollo:
+                <input type="text" name="estudio_desarrollo" required>
+                <br>
+                <br>
+                Plataforma del videojuego: <br>
+                <input type="radio" name="plataforma" value="pc">PC
+                <input type="radio" name="plataforma" value="ps5">PS5
+                <input type="radio" name="plataforma" value="ps4">PS4
+                <input type="radio" name="plataforma" value="ps3">PS3
+                <input type="radio" name="plataforma" value="ps2">PS2
+                <input type="radio" name="plataforma" value="psVr2">PS VR 2 <br>
+                <input type="radio" name="plataforma" value="xboxSeriesX">Xbox Series X
+                <input type="radio" name="plataforma" value="xboxOne">Xbox One
+                <input type="radio" name="plataforma" value="nintendoSwitch">Nintendo Switch
+                <input type="radio" name="plataforma" value="wiiU">Wii U
+                <input type="radio" name="plataforma" value="wii">Wii
+                <input type="radio" name="plataforma" value="3DS">3DS
+                <br>
+                <br>
+                <button type="submit">Envíar</button>
+            </form>
+        </div>
     </div>
+
 
     <footer>
         <div class="ordenarFooter">
