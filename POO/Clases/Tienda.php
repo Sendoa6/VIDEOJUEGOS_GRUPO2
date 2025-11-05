@@ -25,6 +25,24 @@
             $this->direccion = $pDireccion;
         }
         //ToDO funcion que cargue Tiendas de la BD
+        public function cargarTiendasBD($listaTiendas){
+            global $conexion;
+            $query = "SELECT * FROM tienda";
+
+            $execDatos = mysqli_query($conexion, $query);
+
+            if ($execDatos && mysqli_num_rows($execDatos) > 0) {
+                while ($datosTiendas = mysqli_fetch_assoc($execDatos)) {
+
+                    $listaTiendas[] = new Tienda(
+                        $datosTiendas['id_tienda'],
+                        $datosTiendas['direccion']
+                    );
+                }
+            }
+
+            return $listaTiendas;
+        }
 
     }
 

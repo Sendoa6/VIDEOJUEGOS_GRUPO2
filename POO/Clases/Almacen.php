@@ -26,6 +26,24 @@
         }
 
         //ToDO funcion que cargue almacenes de la BD
+        public function cargarAlmacenesBD($listaAlmacenes){
+            global $conexion;
+            $query = "SELECT * FROM almacen";
+
+            $execDatos = mysqli_query($conexion, $query);
+
+            if ($execDatos && mysqli_num_rows($execDatos) > 0) {
+                while ($datosAlmacenes = mysqli_fetch_assoc($execDatos)) {
+
+                    $listaAlmacenes[] = new Almacen(
+                        $datosAlmacenes['id_almacen'],
+                        $datosAlmacenes['id_tienda']
+                    );
+                }
+            }
+
+            return $listaAlmacenes;
+        }
 
     }
 

@@ -66,5 +66,27 @@ class Copia extends Almacen{
     }
 
     //ToDO funcion que cargue Copias de la BD
+        public function cargarCopiasBD($listaCopias){
+            global $conexion;
+            $query = "SELECT * FROM copia";
+
+            $execDatos = mysqli_query($conexion, $query);
+
+            if ($execDatos && mysqli_num_rows($execDatos) > 0) {
+                while ($datosCopias = mysqli_fetch_assoc($execDatos)) {
+
+                    $listaCopias[] = new Copia(
+                        $datosCopias['id_copia'],
+                        $datosCopias['precio_compra'],
+                        $datosCopias['nuevo'],
+                        $datosCopias['unidades'],
+                        $datosCopias['id_almacen'],
+                        $datosCopias['id_videojuego']
+                    );
+                }
+            }
+
+            return $listaCopias;
+        }
 }
 ?>

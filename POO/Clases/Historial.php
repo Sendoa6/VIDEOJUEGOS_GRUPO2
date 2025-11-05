@@ -49,5 +49,24 @@ class Historial extends Trabajador {
         $this->id_trabajador = $id_trabajador;
     }
         //ToDO funcion que cargue Historiales de la BD
+        public function cargarHistorialesBD($listaHistoriales){
+            global $conexion;
+            $query = "SELECT * FROM historial";
+
+            $execDatos = mysqli_query($conexion, $query);
+
+            if ($execDatos && mysqli_num_rows($execDatos) > 0) {
+                while ($datosHistorial = mysqli_fetch_assoc($execDatos)) {
+
+                    $listaHistoriales[] = new Historial(
+                        $datosHistorial['id_historial'],
+                        $datosHistorial['concepto'],
+                        $datosHistorial['id_trabajador']
+                    );
+                }
+            }
+
+            return $listaHistoriales;
+        }
 }
 ?>

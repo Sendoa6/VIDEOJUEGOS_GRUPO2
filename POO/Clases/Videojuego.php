@@ -77,5 +77,28 @@ class Videojuego extends Copia{
     }
 
         //ToDO funcion que cargue videojuegos de la BD
+        public function cargarVideojuegosBD($listaVideojuegos){
+            global $conexion;
+            $query = "SELECT * FROM videojuego";
+
+            $execDatos = mysqli_query($conexion, $query);
+
+            if ($execDatos && mysqli_num_rows($execDatos) > 0) {
+                while ($datosVideojuegos = mysqli_fetch_assoc($execDatos)) {
+
+                    $listaVideojuegos[] = new Videojuego(
+                        $datosVideojuegos['id_videojuego'],
+                        $datosVideojuegos['titulo'],
+                        $datosVideojuegos['anio_publicacion'],
+                        $datosVideojuegos['estudio_desarrollo'],
+                        $datosVideojuegos['plataforma'],
+                        $datosVideojuegos['precio_nuevo'],
+                        $datosVideojuegos['precio_seminuevo']
+                    );
+                }
+            }
+
+            return $listaVideojuegos;
+        }
 }
 ?>

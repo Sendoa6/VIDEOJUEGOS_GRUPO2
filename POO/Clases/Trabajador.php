@@ -104,5 +104,31 @@ class Trabajador extends Tienda{
     }
 
         //ToDO funcion que cargue trabajadores de la BD
+        public function cargarTrabajadorBD($listaTrabajadores){
+            global $conexion;
+            $query = "SELECT * FROM trabajador";
+
+            $execDatos = mysqli_query($conexion, $query);
+
+            if ($execDatos && mysqli_num_rows($execDatos) > 0) {
+                while ($datosTrabajadores = mysqli_fetch_assoc($execDatos)) {
+
+                    $listaTrabajadores[] = new Trabajador(
+                        $datosTrabajadores['id_trabajador'],
+                        $datosTrabajadores['nombre'],
+                        $datosTrabajadores['apellidos'],
+                        $datosTrabajadores['dni'],
+                        $datosTrabajadores['fecha_nacimiento'],
+                        $datosTrabajadores['email'],
+                        $datosTrabajadores['usuario'],
+                        $datosTrabajadores['contrasena_hash'],
+                        $datosTrabajadores['admin'],
+                        $datosTrabajadores['id_tienda']
+                    );
+                }
+            }
+
+            return $listaTrabajadores;
+        }
 }
 ?>
