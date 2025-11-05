@@ -1,4 +1,5 @@
 <?php
+    include '../BD/Conexiones.php';
 class Copia extends Almacen{
 
     protected $id_copia;

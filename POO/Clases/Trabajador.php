@@ -1,4 +1,5 @@
 <?php
+    include '../BD/Conexiones.php';
 class Trabajador extends Tienda{
     protected $id_trabajador;
     protected $nombre;
