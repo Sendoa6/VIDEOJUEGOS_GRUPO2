@@ -94,3 +94,19 @@ h2{
 .inputEscondido{
     border: none;
 }
+.autocomplete-list {
+    background: white;
+    max-height: 180px;
+    overflow-y: auto;
+    width: 250px;
+    position: absolute;
+    z-index: 999;
+}
+.item-juego {
+    padding: 6px;
+    cursor: pointer;
+}
+
+.item-juego:hover {
+    background: #ddd;
+}

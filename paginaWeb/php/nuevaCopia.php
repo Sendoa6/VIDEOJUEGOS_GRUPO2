@@ -7,25 +7,6 @@
     <link rel="stylesheet" href="../estilos/estilosNuevaCopia.css">
     <link rel="icon" href="../imagenes/favicon.png">
 
-    <style>
-        .autocomplete-list {
-            background: white;
-            max-height: 180px;
-            overflow-y: auto;
-            width: 250px;
-            position: absolute;
-            z-index: 999;
-        }
-
-        .item-juego {
-            padding: 6px;
-            cursor: pointer;
-        }
-
-        .item-juego:hover {
-            background: #ddd;
-        }
-    </style>
 </head>
 
 <body>
