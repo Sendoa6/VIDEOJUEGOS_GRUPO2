@@ -1,4 +1,5 @@
 <?php
+    include '../BD/Conexiones.php';
     class Tienda{
         protected $id_tienda;
         protected $direccion;
