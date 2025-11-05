@@ -1,6 +1,6 @@
 <?php
     include '../BD/Conexiones.php';
-class Copia extends Almacen{
+class Copia{
 
     protected $id_copia;
     protected $precio_compra;

@@ -1,6 +1,6 @@
 <?php
     include '../BD/Conexiones.php';
-class Historial extends Trabajador {
+class Historial{
 
     protected $id_historial;
     protected $concepto;

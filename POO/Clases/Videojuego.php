@@ -1,6 +1,6 @@
 <?php
     include '../BD/Conexiones.php';
-class Videojuego extends Copia{
+class Videojuego{
 
     protected $id_videojuego;
     protected $titulo;

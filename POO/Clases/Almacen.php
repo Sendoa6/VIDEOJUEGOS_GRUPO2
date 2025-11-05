@@ -1,6 +1,6 @@
 <?php
     include '../BD/Conexiones.php';
-    class Almacen extends Tienda{
+    class Almacen{
         protected $id_almacen;
         protected $id_tienda;
 
