@@ -1,5 +1,6 @@
 <?php
-    include '../BD/Conexiones.php';
+require_once __DIR__ . "/../BD/Conexiones.php";
+
 class Videojuego{
 
     protected $id_videojuego;

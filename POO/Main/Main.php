@@ -1,14 +1,13 @@
 <?php
-require_once "../BD/Conexiones.php"; 
-require_once "../Clases/Tienda.php";
-require_once "../Clases/Trabajador.php";
-require_once "../Clases/Almacen.php";
-require_once "../Clases/Copia.php";
-require_once "../Clases/Videojuego.php";
-require_once "../Clases/Historial.php";
+require_once __DIR__ . "/../BD/Conexiones.php";
+require_once __DIR__ . "/../Clases/Tienda.php";
+require_once __DIR__ . "/../Clases/Trabajador.php";
+require_once __DIR__ . "/../Clases/Almacen.php";
+require_once __DIR__ . "/../Clases/Copia.php";
+require_once __DIR__ . "/../Clases/Videojuego.php";
+require_once __DIR__ . "/../Clases/Historial.php";
 
 class Main {
-
     private $conexion;
     public $almacenes = [];
     public $copias = [];
@@ -42,4 +41,44 @@ class Main {
         $videojuegos = new Videojuego(0, "",0,"","",0,0);
         $this->videojuegos = $videojuegos->cargarVideojuegosBD($this->videojuegos);
     }
+
+    public function cuantosTrabajadores(){
+        echo count($this->trabajadores);
+    }
+
+    public function queVideojuegos($plataforma) {
+
+            echo "<table>";
+            echo "<tr>
+                    <th>Titulo</th>
+                    <th>Año de publicación</th>
+                    <th>Desarrolladora</th>
+                    <th>Plataforma</th>
+                    <th>Precio nuevo</th>
+                    <th>Precio 2 mano</th>
+                </tr>";
+
+            $encontrado = false;
+
+            for ($i = 0; $i < count($this->videojuegos); $i++) {
+                $videojuego = $this->videojuegos[$i];
+                if (strtolower($videojuego->getPlataforma()) == strtolower($plataforma)) {
+                    $encontrado = true;
+                    echo "<tr>";
+                    echo "<td>{$videojuego->getTitulo()}</td>";
+                    echo "<td>{$videojuego->getAnioPublicacion()}</td>";
+                    echo "<td>{$videojuego->getEstudioDesarrollo()}</td>";
+                    echo "<td>{$videojuego->getPlataforma()}</td>";
+                    echo "<td>{$videojuego->getPrecioNuevo()}</td>";
+                    echo "<td>{$videojuego->getPrecioSemiNuevo()}</td>";
+                    echo "</tr>";
+                }
+            }
+
+            if (!$encontrado) {
+                echo "<tr><td>No hay videojuegos para la plataforma '{$plataforma}'</td></tr>";
+            }
+
+            echo "</table>";
+        }
 }
