@@ -76,6 +76,17 @@ h2{
 .formularioEliminar{
     display: flex;
     justify-content: center;   
+    align-items: center;
+}
+
+.cajaEliminarJuego{
+    background-color: whitesmoke;
+    max-width: 600px;
+    width: 90%;      
+    margin: 0 auto;
     margin-top: 3%; 
-    margin-bottom: 15%;
+    margin-bottom: 10%;
+    padding: 3%;
+    border-radius: 10px;
+    border: solid 1px;
 }
