@@ -16,14 +16,15 @@
     <div class="tabla">
         <?php
             include '../DataBase/conexiones.php';
-            $query = "SELECT id_copia, id_videojuego, precio_compra, nuevo, unidades FROM copia";
+            $query = "SELECT c.id_copia, c.id_videojuego, c.precio_compra, c.nuevo, c.unidades, v.titulo FROM copia c join videojuego v on c.id_videojuego=v.id_videojuego";
             $result = mysqli_query($conexion, $query);
             
             if ($result && mysqli_num_rows($result) > 0) {
                 echo "<table style='margin-bottom:10%;'>";
                 echo "<tr>  
-                        <th>ID</th>
+                        <th>ID Copia</th>
                         <th>ID Videojuego</th>
+                        <th>Titulo</th>
                         <th>Precio_compra</th>
                         <th>Nuevo</th>
                         <th>Unidades</th>
@@ -33,6 +34,7 @@
                     echo "<tr>";
                     echo "<td>" . htmlspecialchars($row['id_copia']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['id_videojuego']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['titulo']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['precio_compra']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['nuevo']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['unidades']) . "</td>";
