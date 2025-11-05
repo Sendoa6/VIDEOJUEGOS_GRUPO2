@@ -5,6 +5,7 @@ body{
 .hover-scale {
     transition: transform 0.3s;
 }
+
 .hover-scale:hover {
     transform: scale(1.08);
     background-color: rgb(230, 230, 230);
