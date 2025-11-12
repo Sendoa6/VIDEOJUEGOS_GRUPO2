@@ -103,7 +103,7 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Autocomplete JS -->
+
     <script>
         document.getElementById("searchJuego").addEventListener("input", function () {
             let texto = this.value;
@@ -113,7 +113,7 @@
                 return;
             }
 
-            fetch("../php/buscarJuegos.php?query=" + texto)
+            fetch("buscarJuegos.php?query=" + texto)
                 .then(res => res.json())
                 .then(data => {
                     const lista = document.getElementById("listaJuegos");

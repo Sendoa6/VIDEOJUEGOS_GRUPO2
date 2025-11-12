@@ -1,5 +1,5 @@
 <?php
-$conexion = new mysqli("localhost", "root", "", "videojuegos_db");
+include "../../DataBase/conexiones.php";
 
 if ($conexion->connect_error) {
     die("Error de conexión");
