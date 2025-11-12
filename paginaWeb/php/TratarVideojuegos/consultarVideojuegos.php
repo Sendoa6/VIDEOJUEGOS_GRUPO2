@@ -49,7 +49,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        include '../DataBase/conexiones.php';
+                        include '../../DataBase/conexiones.php';
                         $query = "SELECT id_videojuego, titulo, anio_publicacion, estudio_desarrollo, plataforma, precio_nuevo, precio_seminuevo FROM videojuego";
                         $result = mysqli_query($conexion, $query);
 
