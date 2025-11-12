@@ -41,9 +41,7 @@
     <!-- CONTENIDO PRINCIPAL -->
     <main class="container p-5 my-5 text-center">
         <?php
-            # Conexión a la base de datos
-            $conexion = mysqli_connect("localhost", "root", "", "videojuegos_db") 
-                or die("<div class='alert alert-danger shadow rounded'>Problemas con la conexión</div>");
+            include '../../DataBase/conexiones.php';  
 
             # Obtenemos el ID
             $id = $_POST['idVideojuego'];
