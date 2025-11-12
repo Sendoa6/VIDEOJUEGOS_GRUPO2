@@ -33,7 +33,7 @@
     <main class="container p-5 my-5 text-center">
         <?php
             # Conexion
-            $conexion = mysqli_connect("localhost", "root", "", "videojuegos_db") or die("Problemas con la conexión");
+            include "../../DataBase/conexiones.php";
 
             # Datos del formulario
             $titulo = $_POST["titulo"];

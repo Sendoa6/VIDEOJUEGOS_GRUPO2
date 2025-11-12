@@ -33,7 +33,7 @@
     <main class="container p-5 my-5 text-center">
 
         <?php
-        $conexion = new mysqli("localhost", "root", "", "videojuegos_db");
+        include "../../DataBase/conexiones.php";
 
         $id_videojuego = $_POST["id_videojuego"];
         $precio_compra = $_POST["precio_compra"];
