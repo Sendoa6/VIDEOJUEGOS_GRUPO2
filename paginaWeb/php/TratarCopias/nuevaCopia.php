@@ -7,21 +7,21 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../estilos/estilosNuevaCopia.css">
-    <link rel="icon" href="../imagenes/favicon.png">
+    <link rel="stylesheet" href="../../estilos/estilosNuevaCopia.css">
+    <link rel="icon" href="../../imagenes/favicon.png">
 </head>
 <body>
 
     <!-- HEADER -->
     <header class="bg-light border-bottom py-3 d-flex justify-content-between align-items-center px-4">
-        <img src="../imagenes/logoGame.png" alt="GAME" class="img-fluid" style="max-width: 10%;">
+        <img src="../../imagenes/logoGame.png" alt="GAME" class="img-fluid" style="max-width: 10%;">
         <h1 class="text-center m-0">GESTIÓN DE VIDEOJUEGOS</h1>
-        <img src="../imagenes/logoAltF4.png" alt="Alt+F4" class="img-fluid" style="max-width: 6%;">
+        <img src="../../imagenes/logoAltF4.png" alt="Alt+F4" class="img-fluid" style="max-width: 6%;">
     </header>
 
     <!-- BOTON VOLVER -->
     <div class="container my-4">
-        <a href="../html/indexCopias.html" class="btn btn-light hover-scale shadow rounded d-inline-flex align-items-center hover-scale">
+        <a href="indexCopias.php" class="btn btn-light hover-scale shadow rounded d-inline-flex align-items-center hover-scale">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="me-2" viewBox="0 0 24 24">
                 <path d="m7.825 12l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T5.426 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7zm6.6 0l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T12.026 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7z"/>
             </svg>
@@ -35,7 +35,7 @@
     <!-- FORMULARIO -->
     <div class="container d-flex justify-content-center my-5">
         <div class="card p-4 shadow rounded w-100" style="max-width: 500px;">
-            <form action="../php/tratarNuevaCopia.php" method="post" class="row g-3">
+            <form action="tratarNuevaCopia.php" method="post" class="row g-3">
 
                 <!-- Nombre del videojuego con autocomplete -->
                 <div class="col-12">
@@ -95,7 +95,7 @@
                 </p>
             </div>
             <div class="text-end">
-                <img src="../imagenes/creativeCommons.png" alt="Creative Commons" class="img-fluid" style="width: 40%;">
+                <img src="../../imagenes/creativeCommons.png" alt="Creative Commons" class="img-fluid" style="width: 40%;">
             </div>
         </div>
     </footer>
