@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-include '../DataBase/conexiones.php';
+include '../../DataBase/conexiones.php';
 
 // Recibir los datos del formulario y limpiarlos
-$username_login = mysqli_real_escape_string($conexion, $_POST['username_login']);
-$password_login = mysqli_real_escape_string($conexion, $_POST['password_login']);
-// $password_login = hash('sha512', $password_login);
+$username_login =  $_POST['username_login'];
+$password_login =  $_POST['password_login'];
+$password_login = hash('sha512', $password_login);
 
 
 $query = "SELECT * FROM trabajador WHERE usuario = '$username_login' AND contrasena_hash = '$password_login' LIMIT 1";

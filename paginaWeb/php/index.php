@@ -8,17 +8,17 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../estilos/estilosIndex.css">
-    <link rel="icon" href="../imagenes/favicon.png">
+    <link rel="stylesheet" href="../../estilos/estilosIndex.css">
+    <link rel="icon" href="../../imagenes/favicon.png">
 </head>
 
 <body>
 
     <!-- HEADER -->
     <header class="bg-light border-bottom py-3 d-flex justify-content-between align-items-center px-4">
-        <img src="../imagenes/logoGame.png" alt="GAME" class="img-fluid" style="max-width: 10%;">
+        <img src="../../imagenes/logoGame.png" alt="GAME" class="img-fluid" style="max-width: 10%;">
         <h1 class="text-center m-0">GESTIÓN DE VIDEOJUEGOS</h1>
-        <img src="../imagenes/logoAltF4.png" alt="Alt+F4" class="img-fluid" style="max-width: 6%;">
+        <img src="../../imagenes/logoAltF4.png" alt="Alt+F4" class="img-fluid" style="max-width: 6%;">
     </header>
 
     <!-- TITULO -->
@@ -27,17 +27,17 @@
     <!-- SECCIONES -->
     <div class="container my-5 p-5">
         <div class="row justify-content-center gap-4">
-            <a href="indexVideojuegos.html" class="col-10 col-md-4 text-decoration-none text-dark mb-4">
+            <a href="indexVideojuegos.php" class="col-10 col-md-4 text-decoration-none text-dark mb-4">
                 <div class="p-4 bg-light shadow rounded text-center hover-scale h-100 d-flex flex-column justify-content-center align-items-center">
                     <h3 class="mb-3">Gestionar videojuegos</h3>
-                    <img src="../imagenes/iconoVideojuegos.png" class="img-fluid" style="width:100px; height:100px; object-fit:contain;">
+                    <img src="../../imagenes/iconoVideojuegos.png" class="img-fluid" style="width:100px; height:100px; object-fit:contain;">
                 </div>
             </a>
 
-            <a href="indexCopias.html" class="col-10 col-md-4 text-decoration-none text-dark mb-4">
+            <a href="indexCopias.php" class="col-10 col-md-4 text-decoration-none text-dark mb-4">
                 <div class="p-4 bg-light shadow rounded text-center hover-scale h-100 d-flex flex-column justify-content-center align-items-center">
                     <h3 class="mb-3">Gestionar copias de videojuegos</h3>
-                    <img src="../imagenes/iconoCopias.png" class="img-fluid" style="width:100px; height:100px; object-fit:contain;">
+                    <img src="../../imagenes/iconoCopias.png" class="img-fluid" style="width:100px; height:100px; object-fit:contain;">
                 </div>
             </a>
 
@@ -64,7 +64,7 @@
             </div>
 
             <div class="text-end">
-                <img src="../imagenes/creativeCommons.png" alt="Creative Commons" class="img-fluid" style="width: 40%;">
+                <img src="../../imagenes/creativeCommons.png" alt="Creative Commons" class="img-fluid" style="width: 40%;">
             </div>
 
         </div>
