@@ -6,7 +6,7 @@ include '../../DataBase/conexiones.php';
 // Recibir los datos del formulario y limpiarlos
 $username_login =  $_POST['username_login'];
 $password_login =  $_POST['password_login'];
-$password_login = hash('sha512', $password_login);
+$password_login = hash('sha256', $password_login);
 
 
 $query = "SELECT * FROM trabajador WHERE usuario = '$username_login' AND contrasena_hash = '$password_login' LIMIT 1";
@@ -24,7 +24,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     $_SESSION['id_tienda'] = $datos_usuario['id_tienda'];
 
     // Redirigir a la página de bienvenida
-    header("location: index.html");
+    header("location: ../index.php");
     exit();
 } else {
     // Si el usuario no existe o la contraseña es incorrecta

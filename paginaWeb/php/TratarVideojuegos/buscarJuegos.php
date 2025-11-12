@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include '../../../DataBase/conexiones.php';
+include '../../DataBase/conexiones.php';
 if (!isset($_SESSION['id_trabajador'])) {
     session_destroy();
     header("Location: ../Sessions/inicio_sesion.php");

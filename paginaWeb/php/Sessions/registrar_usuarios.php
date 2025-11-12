@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include '../../../DataBase/conexiones.php';
+    include '../../DataBase/conexiones.php';
     if (isset($_SESSION['admin']) && $_SESSION['admin'] == 0) {
         session_destroy();
         header("Location: inicio_sesion.php");

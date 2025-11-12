@@ -17,7 +17,7 @@
                 <input type="text" id="username_login" name="username_login" required>  
 
                 <label for="password_login">Contraseña:</label>
-                <input type="password" id="password_login" name="password_login" required>  ç
+                <input type="password" id="password_login" name="password_login" required>  
                 <button  type="submit">Iniciar Sesión</button>
             </form>
         </div>
