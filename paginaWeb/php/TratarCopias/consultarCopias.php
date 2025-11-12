@@ -48,7 +48,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        include '../DataBase/conexiones.php';
+                        include '../../DataBase/conexiones.php';
                         $query = "SELECT c.id_copia, c.id_videojuego, c.precio_compra, c.nuevo, c.unidades, v.titulo 
                                   FROM copia c 
                                   JOIN videojuego v ON c.id_videojuego=v.id_videojuego";
