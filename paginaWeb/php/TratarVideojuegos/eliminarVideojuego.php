@@ -1,11 +1,11 @@
 <?php
-    session_start();
-    include '../../DataBase/conexiones.php';
-    if (!isset($_SESSION['id_trabajador'])) {
-        session_destroy();
-        header("Location: ../Sessions/inicio_sesion.php");
-        exit();
-    }
+session_start();
+include '../../DataBase/conexiones.php';
+if (!isset($_SESSION['id_trabajador'])) {
+    session_destroy();
+    header("Location: ../Sessions/inicio_sesion.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -47,8 +47,10 @@
             <form action="procesarEliminarVideojuego.php" method="post" class="row g-3">
 
                 <div class="col-12">
-                    <label for="idVideojuego" class="form-label">ID del videojuego (ver en "Consultar videojuegos"):</label>
-                    <input type="number" name="idVideojuego" id="idVideojuego" class="form-control" required>
+                    <label for="searchJuego" class="form-label">Busca el videojuego:</label>
+                    <input type="text" id="searchJuego" class="form-control" placeholder="Escribe el nombre del videojuego..." autocomplete="off">
+                    <input type="hidden" name="idVideojuego" id="id_videojuego">
+                    <div id="listaJuegos" class="border rounded mt-2" style="max-height: 200px; overflow-y: auto;"></div>
                 </div>
 
                 <div class="col-12 text-center">
@@ -82,5 +84,40 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        document.getElementById("searchJuego").addEventListener("input", function () {
+            let texto = this.value;
+
+            if (texto.length < 2) {
+                document.getElementById("listaJuegos").innerHTML = "";
+                return;
+            }
+
+            fetch("../TratarCopias/buscarJuegos.php?query=" + texto)
+                .then(res => res.json())
+                .then(data => {
+                    const lista = document.getElementById("listaJuegos");
+                    lista.innerHTML = "";
+
+                    data.forEach(juego => {
+                        const item = document.createElement("div");
+                        item.className = "item-juego p-2 border-bottom";
+                        item.textContent = `${juego.titulo} (${juego.plataforma})`;
+                        item.dataset.id = juego.id_videojuego;
+                        item.dataset.nombre = juego.titulo;
+
+                        item.onclick = () => {
+                            document.getElementById("searchJuego").value = item.dataset.nombre;
+                            document.getElementById("id_videojuego").value = item.dataset.id;
+                            lista.innerHTML = "";
+                        };
+
+                        lista.appendChild(item);
+                    });
+                });
+        });
+    </script>
 </body>
 </html>
