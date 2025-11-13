@@ -30,7 +30,7 @@
 
     <!-- BOTON VOLVER -->
     <div class="container my-4">
-        <a href="indexVideojuegos.php" class="btn hover-scale btn-light shadow rounded d-inline-flex align-items-center hover-scale">
+        <a href="indexTrabajadores.php" class="btn hover-scale btn-light shadow rounded d-inline-flex align-items-center hover-scale">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="me-2" viewBox="0 0 24 24">
                 <path d="m7.825 12l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T5.426 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7zm6.6 0l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T12.026 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7z"/>
             </svg>
@@ -61,7 +61,7 @@
                 <tbody>
                     <?php
                         include '../../DataBase/conexiones.php';
-                        $query = "SELECT t.id_trabajador, t.nombre, t.apellidos, t.dni, t.fecha_nacimiento, t.email, t.usuario, t.admin, ti.direccion AS direccion_tienda FROM trabajador t JOIN tienda ti ON t.id_tienda = ti.id_tienda ORDER BY ti.direccion ASC";
+                        $query = "SELECT t.id_trabajador, t.nombre, t.apellidos, t.dni, t.fecha_nacimiento, t.email, t.usuario, t.admin, ti.direccion AS direccion_tienda FROM trabajador t JOIN tienda ti ON t.id_tienda = ti.id_tienda ORDER BY t.id_trabajador ASC";
 
                         $result = mysqli_query($conexion, $query);
 
