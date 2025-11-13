@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 include '../../DataBase/conexiones.php';
 if (!isset($_SESSION['id_trabajador'])) {
@@ -8,14 +7,9 @@ if (!isset($_SESSION['id_trabajador'])) {
     exit();
 }
 
-
-if ($conexion->connect_error) {
-    die("Error de conexión");
-}
-
 $query = $_GET["query"] ?? "";
 
-$stmt = $conexion->prepare("SELECT id_videojuego, titulo, plataforma FROM videojuego WHERE titulo LIKE ?");
+$stmt = $conexion->prepare("SELECT id_tienda, direccion FROM tienda WHERE direccion LIKE ?");
 $like = "%$query%";
 $stmt->bind_param("s", $like);
 $stmt->execute();
@@ -26,5 +20,9 @@ while ($fila = $resultado->fetch_assoc()) {
     $lista[] = $fila;
 }
 
+header('Content-Type: application/json');
 echo json_encode($lista);
+
+$stmt->close();
+$conexion->close();
 ?>
