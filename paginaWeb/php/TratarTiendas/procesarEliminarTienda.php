@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../../DataBase/conexiones.php';
+
 if (!isset($_SESSION['id_trabajador'])) {
     session_destroy();
     header("Location: ../Sessions/inicio_sesion.php");
@@ -13,19 +14,16 @@ if (!isset($_SESSION['id_trabajador'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar Tienda - Procesar</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../estilos/estilosEliminarJuego.css">
     <link rel="icon" href="../../imagenes/favicon.png">
 </head>
 <body>
-
     <header class="bg-light border-bottom py-3 d-flex justify-content-between align-items-center px-4">
         <img src="../../imagenes/logoGame.png" alt="GAME" class="img-fluid" style="max-width: 10%;">
         <h1 class="text-center m-0">GESTIÓN DE TIENDAS</h1>
         <img src="../../imagenes/logoAltF4.png" alt="Alt+F4" class="img-fluid" style="max-width: 6%;">
     </header>
-
     <div class="container my-4">
         <a href="eliminarTienda.php" class="btn btn-light hover-scale shadow rounded d-inline-flex align-items-center hover-scale">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="me-2" viewBox="0 0 24 24">
@@ -34,32 +32,27 @@ if (!isset($_SESSION['id_trabajador'])) {
             Volver
         </a>
     </div>
-
     <main class="container p-5 my-5 text-center">
         <?php
-            include '../../DataBase/conexiones.php';  
-
             $id = $_POST['idTienda'];
-
             $registro = mysqli_query($conexion, "SELECT * FROM tienda WHERE id_tienda = '$id'");
 
             if (mysqli_num_rows($registro) > 0) {
-                mysqli_query($conexion, "DELETE FROM tienda WHERE id_tienda = '$id'") 
-                    or die("<div class='alert alert-danger shadow rounded'>Problemas al eliminar la tienda: " . mysqli_error($conexion) . "</div>");
+                $deleteTrabajadores = mysqli_query($conexion, "DELETE FROM trabajador WHERE id_tienda = '$id'");
+                $deleteTienda = mysqli_query($conexion, "DELETE FROM tienda WHERE id_tienda = '$id'");
 
-                echo "<div class='alert alert-success shadow rounded'>
-                        La tienda con ID <strong>$id</strong> ha sido eliminada correctamente.
-                      </div>";
+                if ($deleteTienda) {
+                    echo "<div class='alert alert-success shadow rounded'>La tienda con ID <strong>$id</strong> y todos sus trabajadores asociados han sido eliminados correctamente.</div>";
+                } else {
+                    echo "<div class='alert alert-danger shadow rounded'>Error al eliminar la tienda: " . mysqli_error($conexion) . "</div>";
+                }
             } else {
-                echo "<div class='alert alert-warning shadow rounded'>
-                        No se encontró ninguna tienda con el ID <strong>$id</strong>.
-                      </div>";
+                echo "<div class='alert alert-warning shadow rounded'>No se encontró ninguna tienda con el ID <strong>$id</strong>.</div>";
             }
 
             mysqli_close($conexion);
         ?>
     </main>
-
     <footer class="bg-dark text-white mt-5 p-5">
         <div class="container d-flex justify-content-between align-items-center flex-wrap">
             <div class="mb-3">
@@ -70,7 +63,6 @@ if (!isset($_SESSION['id_trabajador'])) {
             </div>
         </div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
