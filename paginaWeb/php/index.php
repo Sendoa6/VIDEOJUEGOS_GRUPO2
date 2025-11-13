@@ -1,13 +1,3 @@
-<?php
-    session_start();
-    include '../DataBase/conexiones.php';
-    if (!isset($_SESSION['id_trabajador'])) {
-        session_destroy();
-        header("Location: /Sessions/inicio_sesion.php");
-        exit();
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -41,6 +31,20 @@
                 <div class="p-4 bg-light shadow rounded text-center hover-scale h-100 d-flex flex-column justify-content-center align-items-center">
                     <h3 class="mb-3">Gestionar videojuegos</h3>
                     <img src="../imagenes/iconoVideojuegos.png" class="img-fluid" style="width:100px; height:100px; object-fit:contain;">
+                </div>
+            </a>
+
+            <a href="TratarCopias/indexCopias.php" class="col-10 col-md-4 text-decoration-none text-dark mb-4">
+                <div class="p-4 bg-light shadow rounded text-center hover-scale h-100 d-flex flex-column justify-content-center align-items-center">
+                    <h3 class="mb-3">Gestionar copias de videojuegos</h3>
+                    <img src="../imagenes/iconoCopias.png" class="img-fluid" style="width:100px; height:100px; object-fit:contain;">
+                </div>
+            </a>
+
+            <a href="TratarTrabajadores/indexTrabajadores.php" class="col-10 col-md-4 text-decoration-none text-dark mb-4">
+                <div class="p-4 bg-light shadow rounded text-center hover-scale h-100 d-flex flex-column justify-content-center align-items-center">
+                    <h3 class="mb-3">Gestionar trabajadores</h3>
+                    <img src="../imagenes/iconoCopias.png" class="img-fluid" style="width:100px; height:100px; object-fit:contain;">
                 </div>
             </a>
 
