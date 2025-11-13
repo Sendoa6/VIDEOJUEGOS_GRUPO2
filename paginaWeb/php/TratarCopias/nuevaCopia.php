@@ -70,11 +70,11 @@
                 <div class="col-12">
                     <label class="form-label">Es nuevo?</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="nuevo" id="nuevoSi" value="si" required>
+                        <input class="form-check-input" type="radio" name="nuevo" id="nuevoSi" value="nuevo" required>
                         <label class="form-check-label" for="nuevoSi">Sí</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="nuevo" id="nuevoNo" value="no">
+                        <input class="form-check-input" type="radio" name="nuevo" id="nuevoNo" value="seminuevo">
                         <label class="form-check-label" for="nuevoNo">No</label>
                     </div>
                 </div>

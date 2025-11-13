@@ -46,12 +46,12 @@
 
         $id_videojuego = $_POST["id_videojuego"];
         $precio_compra = $_POST["precio_compra"];
-        $nuevo = ($_POST['nuevo'] === "si") ? 1 : 0;
+        $nuevo = ($_POST['nuevo'] === "nuevo") ? "nuevo" : "seminuevo";
         $unidades = $_POST["unidades"];
 
-        $check = mysqli_query($conexion, "SELECT v.id_videojuego, c.nuevo 
+        $check = mysqli_query($conexion, "SELECT c.id_videojuego, c.nuevo 
         FROM copia c JOIN videojuego v ON v.id_videojuego = c.id_videojuego
-        WHERE v.id_videojuego = '$id_videojuego' AND c.nuevo = '$nuevo'");
+        WHERE c.id_videojuego = '$id_videojuego' AND c.nuevo = '$nuevo'");
 
         if (mysqli_num_rows($check) > 0) {
 
