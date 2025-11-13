@@ -12,7 +12,7 @@ if (!isset($_SESSION['id_trabajador'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Videojuego</title>
+    <title>Eliminar Trabajador</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,13 +24,13 @@ if (!isset($_SESSION['id_trabajador'])) {
     <!-- HEADER -->
     <header class="bg-light border-bottom py-3 d-flex justify-content-between align-items-center px-4">
         <img src="../../imagenes/logoGame.png" alt="GAME" class="img-fluid" style="max-width: 10%;">
-        <h1 class="text-center m-0">GESTIÓN DE VIDEOJUEGOS</h1>
+        <h1 class="text-center m-0">GESTIÓN DE TRABAJADORES</h1>
         <img src="../../imagenes/logoAltF4.png" alt="Alt+F4" class="img-fluid" style="max-width: 6%;">
     </header>
 
     <!-- BOTON VOLVER -->
     <div class="container my-4">
-        <a href="indexVideojuegos.php" class="btn hover-scale btn-light shadow rounded d-inline-flex align-items-center hover-scale">
+        <a href="indexTrabajadores.php" class="btn hover-scale btn-light shadow rounded d-inline-flex align-items-center hover-scale">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="me-2" viewBox="0 0 24 24">
                 <path d="m7.825 12l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T5.426 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7zm6.6 0l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T12.026 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7z"/>
             </svg>
@@ -39,7 +39,7 @@ if (!isset($_SESSION['id_trabajador'])) {
     </div>
 
     <!-- TITULO -->
-    <h2 class="text-center my-4"><i>Ingresa el videojuego a eliminar:</i></h2>
+    <h2 class="text-center my-4"><i>Ingresa el trabajador a eliminar:</i></h2>
 
     <!-- FORMULARIO -->
     <div class="container d-flex justify-content-center my-5 p-3">
@@ -47,10 +47,10 @@ if (!isset($_SESSION['id_trabajador'])) {
             <form action="procesarEliminarVideojuego.php" method="post" class="row g-3">
 
                 <div class="col-12">
-                    <label for="searchJuego" class="form-label">Busca el videojuego:</label>
-                    <input type="text" id="searchJuego" class="form-control" placeholder="Escribe el nombre del videojuego..." autocomplete="off">
-                    <input type="hidden" name="idVideojuego" id="id_videojuego">
-                    <div id="listaJuegos" class="border rounded mt-2" style="max-height: 200px; overflow-y: auto;"></div>
+                    <label for="searchTrabajador" class="form-label">Busca el trabajador:</label>
+                    <input type="text" id="searchTrabajador" class="form-control" placeholder="Escribe el nombre del trabajador..." autocomplete="off">
+                    <input type="hidden" name="idTrabajador" id="id_trabajador">
+                    <div id="listaTrabajadores" class="border rounded mt-2" style="max-height: 200px; overflow-y: auto;"></div>
                 </div>
 
                 <div class="col-12 text-center">
@@ -87,37 +87,39 @@ if (!isset($_SESSION['id_trabajador'])) {
 
 
     <script>
-        document.getElementById("searchJuego").addEventListener("input", function () {
-            let texto = this.value;
+    document.getElementById("searchTrabajador").addEventListener("input", function () {
+        let texto = this.value.trim();
 
-            if (texto.length < 2) {
-                document.getElementById("listaJuegos").innerHTML = "";
-                return;
-            }
+        if (texto.length < 2) {
+            document.getElementById("listaTrabajadores").innerHTML = "";
+            return;
+        }
 
-            fetch("../TratarCopias/buscarJuegos.php?query=" + texto)
-                .then(res => res.json())
-                .then(data => {
-                    const lista = document.getElementById("listaJuegos");
-                    lista.innerHTML = "";
+        fetch("../TratarTrabajadores/buscarTrabajadores.php?query=" + encodeURIComponent(texto))
+            .then(res => res.json())
+            .then(data => {
+                const lista = document.getElementById("listaTrabajadores");
+                lista.innerHTML = "";
 
-                    data.forEach(juego => {
-                        const item = document.createElement("div");
-                        item.className = "item-juego p-2 border-bottom";
-                        item.textContent = `${juego.titulo} (${juego.plataforma})`;
-                        item.dataset.id = juego.id_videojuego;
-                        item.dataset.nombre = juego.titulo;
+                data.forEach(trabajador => {
+                    const item = document.createElement("div");
+                    item.className = "item-trabajador p-2 border-bottom";
+                    item.textContent = `${trabajador.nombre} ${trabajador.apellidos}`;
+                    item.dataset.id = trabajador.id_trabajador;
+                    item.dataset.nombre = `${trabajador.nombre} ${trabajador.apellidos}`;
 
-                        item.onclick = () => {
-                            document.getElementById("searchJuego").value = item.dataset.nombre;
-                            document.getElementById("id_videojuego").value = item.dataset.id;
-                            lista.innerHTML = "";
-                        };
+                    item.onclick = () => {
+                        document.getElementById("searchTrabajador").value = item.dataset.nombre;
+                        document.getElementById("id_trabajador").value = item.dataset.id;
+                        lista.innerHTML = "";
+                    };
 
-                        lista.appendChild(item);
-                    });
+                    lista.appendChild(item);
                 });
-        });
+            })
+            .catch(err => console.error("Error:", err));
+    });
     </script>
+
 </body>
 </html>

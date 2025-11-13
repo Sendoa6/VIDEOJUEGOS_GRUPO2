@@ -23,14 +23,28 @@
 
     if ($password2 != $password){
         echo "<script type='text/javascript'>alert('Error. Las contraseñas no coinciden.');</script>";
-        header("Refresh: 0.1; url=RegistroFRM.php");
+        header("Refresh: 0.1; url=nuevoTrabajador.php");
         exit;
     }
     if (strpos($email, '@') == false && strpos($email, '.') == false) {
         echo "<script type='text/javascript'>alert('Error. Correo electrónico inválido.');</script>";
-        header("Refresh: 0.1; url=RegistroFRM.php");
+        header("Refresh: 0.1; url=nuevoTrabajador.php");
         exit;
     }
+    $verificar_usuario = mysqli_query($conexion, "SELECT * FROM trabajador WHERE usuario='$usuario' ");
+    if (mysqli_num_rows($verificar_usuario) > 0){
+        echo "<script type='text/javascript'>alert('Este usuario ya está en uso, intenta con uno diferente');</script>";
+        header("Refresh: 0.1; url=nuevoTrabajador.php");
+        exit();
+    }    
+    $verificar_correo = mysqli_query($conexion, "SELECT * FROM trabajador WHERE email='$email' ");
+    if (mysqli_num_rows($verificar_correo) > 0){
+        echo "<script type='text/javascript'>alert('Este correo ya está en uso, intenta con uno diferente');</script>";
+        header("Refresh: 0.1; url=nuevoTrabajador.php");
+        exit();
+    } 
+    
+    
     
     $query = "INSERT INTO trabajador (nombre, apellidos, dni, fecha_nacimiento, email, usuario,contrasena_hash,admin,id_tienda) VALUES ('$nombre', '$apellido', '$dni', '$fecha_nacimiento', '$email', '$usuario', '$password2','$admin','$id_tienda')";
     
