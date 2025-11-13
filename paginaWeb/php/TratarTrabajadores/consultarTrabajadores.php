@@ -1,22 +1,22 @@
 <?php
-session_start();
-include '../../DataBase/conexiones.php';
-if (!isset($_SESSION['id_trabajador'])) {
-    session_destroy();
-    header("Location: ../Sessions/inicio_sesion.php");
-    exit();
-}
+    session_start();
+    include '../../DataBase/conexiones.php';
+    if (!isset($_SESSION['id_trabajador'])) {
+        session_destroy();
+        header("Location: ../Sessions/inicio_sesion.php");
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Videojuego</title>
+    <title>Consultar Videojuegos</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../estilos/estilosEliminarJuego.css">
+    <link rel="stylesheet" href="../../estilos/estilosConsultarVideojuegos.css">
     <link rel="icon" href="../../imagenes/favicon.png">
 </head>
 <body>
@@ -39,25 +39,48 @@ if (!isset($_SESSION['id_trabajador'])) {
     </div>
 
     <!-- TITULO -->
-    <h2 class="text-center my-4"><i>Ingresa el videojuego a eliminar:</i></h2>
+    <h2 class="text-center my-4"><i>Listado de videojuegos:</i></h2>
 
-    <!-- FORMULARIO -->
-    <div class="container d-flex justify-content-center my-5 p-3">
-        <div class="card p-4 shadow rounded w-100" style="max-width: 400px;">
-            <form action="procesarEliminarVideojuego.php" method="post" class="row g-3">
+    <!-- TABLA -->
+    <div class="container my-5">
+        <div class="table-responsive shadow rounded">
+            <table class="table table-bordered table-striped mb-0">
+                <thead class="table-dark text-white">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Dni</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Email</th>
+                        <th>Admin</th>
+                        <th>Tienda</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        include '../../DataBase/conexiones.php';
+                        $query = "SELECT id_trabajador, titulo, anio_publicacion, estudio_desarrollo, plataforma, precio_nuevo, precio_seminuevo FROM videojuego";
+                        $result = mysqli_query($conexion, $query);
 
-                <div class="col-12">
-                    <label for="searchJuego" class="form-label">Busca el videojuego:</label>
-                    <input type="text" id="searchJuego" class="form-control" placeholder="Escribe el nombre del videojuego..." autocomplete="off">
-                    <input type="hidden" name="idVideojuego" id="id_videojuego">
-                    <div id="listaJuegos" class="border rounded mt-2" style="max-height: 200px; overflow-y: auto;"></div>
-                </div>
-
-                <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
-                </div>
-
-            </form>
+                        if ($result && mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($row['id_trabajador']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['titulo']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['anio_publicacion']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['estudio_desarrollo']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['plataforma']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['precio_nuevo']) . " €</td>";
+                                echo "<td>" . htmlspecialchars($row['precio_seminuevo']) . " €</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='7' class='text-center'>No hay Videojuegos registrados.</td></tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -84,40 +107,5 @@ if (!isset($_SESSION['id_trabajador'])) {
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
-    <script>
-        document.getElementById("searchJuego").addEventListener("input", function () {
-            let texto = this.value;
-
-            if (texto.length < 2) {
-                document.getElementById("listaJuegos").innerHTML = "";
-                return;
-            }
-
-            fetch("../TratarCopias/buscarJuegos.php?query=" + texto)
-                .then(res => res.json())
-                .then(data => {
-                    const lista = document.getElementById("listaJuegos");
-                    lista.innerHTML = "";
-
-                    data.forEach(juego => {
-                        const item = document.createElement("div");
-                        item.className = "item-juego p-2 border-bottom";
-                        item.textContent = `${juego.titulo} (${juego.plataforma})`;
-                        item.dataset.id = juego.id_videojuego;
-                        item.dataset.nombre = juego.titulo;
-
-                        item.onclick = () => {
-                            document.getElementById("searchJuego").value = item.dataset.nombre;
-                            document.getElementById("id_videojuego").value = item.dataset.id;
-                            lista.innerHTML = "";
-                        };
-
-                        lista.appendChild(item);
-                    });
-                });
-        });
-    </script>
 </body>
 </html>

@@ -12,13 +12,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nueva Copia - Procesar</title>
+    <title>Gestión de videojuegos</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../estilos/estilosNuevaCopia.css">
+    <link rel="stylesheet" href="../../estilos/estilosIndexVideojuegos.css">
     <link rel="icon" href="../../imagenes/favicon.png">
 </head>
+
 <body>
 
     <!-- HEADER -->
@@ -28,62 +29,46 @@
         <img src="../../imagenes/logoAltF4.png" alt="Alt+F4" class="img-fluid" style="max-width: 6%;">
     </header>
 
-    <!-- BOTÓN VOLVER -->
+    <!-- BOTON VOLVER -->
     <div class="container my-4">
-        <a href="indexCopias.php" class="btn btn-light shadow rounded d-inline-flex align-items-center hover-scale">
+        <a href="../index.php" class="hover-scale btn btn-light shadow rounded d-inline-flex align-items-center hover-scale">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="me-2" viewBox="0 0 24 24">
-                <path d="m7.825 12l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T5.426 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7zm6.6 0l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T12.026 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7z"/>
+                <path d="M7 20q-.825 0-1.412-.587T5 18v-7.15l-2 1.525q-.35.25-.75.213T1.6 12.2t-.2-.75t.4-.65l8.975-6.875q.275-.2.588-.3t.637-.1t.638.1t.587.3L16 6.05V5.5q0-.625.438-1.062T17.5 4t1.063.438T19 5.5v2.85l3.2 2.45q.325.25.388.65t-.188.75t-.65.388t-.75-.213l-2-1.525V18q0 .825-.587 1.413T17 20h-1q-.825 0-1.412-.587T14 18v-2q0-.825-.587-1.412T12 14t-1.412.588T10 16v2q0 .825-.587 1.413T8 20zm3-9.975h4q0-.8-.6-1.313T12 8.2t-1.4.513t-.6 1.312"/>
             </svg>
             Volver
         </a>
     </div>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="container p-5 my-5 text-center">
+    <!-- TITULO -->
+    <h2 class="text-center my-5"><i>Elige una opción:</i></h2>
 
-        <?php
-        include "../../DataBase/conexiones.php";
+    <!-- SECCIONES -->
+    <div class="container my-5 p-5">
+        <div class="row justify-content-center gap-4">
 
-        $id_videojuego = $_POST["id_videojuego"];
-        $precio_compra = $_POST["precio_compra"];
-        $nuevo = ($_POST['nuevo'] === "nuevo") ? "nuevo" : "seminuevo";
-        $unidades = $_POST["unidades"];
+            <a href="nuevoTrabajador.php" class="col-10 col-md-4 text-decoration-none text-dark mb-4">
+                <div class="p-4 bg-light hover-scale shadow rounded text-center hover-scale h-100 d-flex flex-column justify-content-center align-items-center">
+                    <h3 class="mb-3">Nuevo trabajador</h3>
+                    <img src="../../imagenes/logoAñadir.png" class="img-fluid" style="width:100px; height:100px; object-fit:contain;">
+                </div>
+            </a>
 
-        $check = mysqli_query($conexion, "SELECT c.id_videojuego, c.nuevo 
-        FROM copia c JOIN videojuego v ON v.id_videojuego = c.id_videojuego
-        WHERE c.id_videojuego = '$id_videojuego' AND c.nuevo = '$nuevo'");
+            <a href="eliminarTrabajador.php" class="col-10 col-md-4 text-decoration-none text-dark mb-4">
+                <div class="p-4 bg-light hover-scale shadow rounded text-center hover-scale h-100 d-flex flex-column justify-content-center align-items-center">
+                    <h3 class="mb-3">Eliminar trabajador</h3>
+                    <img src="../../imagenes/logoEliminar.png" class="img-fluid" style="width:100px; height:100px; object-fit:contain;">
+                </div>
+            </a>
 
-        if (mysqli_num_rows($check) > 0) {
+            <a href="consultarTrabajadores.php" class="col-10 col-md-4 text-decoration-none text-dark mb-4">
+                <div class="p-4 bg-light hover-scale shadow rounded text-center hover-scale h-100 d-flex flex-column justify-content-center align-items-center">
+                    <h3 class="mb-3">Consultar trabajadores</h3>
+                    <img src="../../imagenes/logoListar.png" class="img-fluid" style="width:100px; height:100px; object-fit:contain;">
+                </div>
+            </a>
 
-            $sqlUpdate = "UPDATE copia SET unidades = unidades + '$unidades' 
-                          WHERE id_videojuego = '$id_videojuego' AND nuevo = '$nuevo'";
-
-            mysqli_query($conexion, $sqlUpdate);
-
-            echo "<div class='alert alert-success shadow rounded'>
-                    Se ha actualizado el número de copias.
-                  </div>";
-
-        } else {
-
-            $sqlInsert = "INSERT INTO copia (id_videojuego, precio_compra, nuevo, unidades) 
-            VALUES ('$id_videojuego', '$precio_compra', '$nuevo', '$unidades')";
-
-            if (mysqli_query($conexion, $sqlInsert)) {
-                echo "<div class='alert alert-success shadow rounded'>
-                        Se ha actualizado el número de copias del videojuego con ID: (ID: $id_videojuego).
-                      </div>";
-            } else {
-                echo "<div class='alert alert-danger shadow rounded'>
-                        Error al insertar copias: " . mysqli_error($conexion) . "
-                      </div>";
-            }
-        }
-
-        mysqli_close($conexion);
-        ?>
-
-    </main>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer class="bg-dark text-white mt-5 p-5">

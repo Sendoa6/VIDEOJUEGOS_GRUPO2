@@ -1,18 +1,18 @@
 <?php
-session_start();
-include '../../DataBase/conexiones.php';
-if (!isset($_SESSION['id_trabajador'])) {
-    session_destroy();
-    header("Location: ../Sessions/inicio_sesion.php");
-    exit();
-}
+    session_start();
+    include '../../DataBase/conexiones.php';
+    if (!isset($_SESSION['id_trabajador'])) {
+        session_destroy();
+        header("Location: ../Sessions/inicio_sesion.php");
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Videojuego</title>
+    <title>Eliminar Videojuego - Procesar</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -30,7 +30,7 @@ if (!isset($_SESSION['id_trabajador'])) {
 
     <!-- BOTON VOLVER -->
     <div class="container my-4">
-        <a href="indexVideojuegos.php" class="btn hover-scale btn-light shadow rounded d-inline-flex align-items-center hover-scale">
+        <a href="eliminarVideojuego.php" class="btn btn-light hover-scale shadow rounded d-inline-flex align-items-center hover-scale">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="me-2" viewBox="0 0 24 24">
                 <path d="m7.825 12l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T5.426 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7zm6.6 0l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T12.026 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7z"/>
             </svg>
@@ -38,28 +38,38 @@ if (!isset($_SESSION['id_trabajador'])) {
         </a>
     </div>
 
-    <!-- TITULO -->
-    <h2 class="text-center my-4"><i>Ingresa el videojuego a eliminar:</i></h2>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container p-5 my-5 text-center">
+        <?php
+            include '../../DataBase/conexiones.php';  
 
-    <!-- FORMULARIO -->
-    <div class="container d-flex justify-content-center my-5 p-3">
-        <div class="card p-4 shadow rounded w-100" style="max-width: 400px;">
-            <form action="procesarEliminarVideojuego.php" method="post" class="row g-3">
+            # Obtenemos el ID
+            $id = $_POST['idVideojuego'];
 
-                <div class="col-12">
-                    <label for="searchJuego" class="form-label">Busca el videojuego:</label>
-                    <input type="text" id="searchJuego" class="form-control" placeholder="Escribe el nombre del videojuego..." autocomplete="off">
-                    <input type="hidden" name="idVideojuego" id="id_videojuego">
-                    <div id="listaJuegos" class="border rounded mt-2" style="max-height: 200px; overflow-y: auto;"></div>
-                </div>
+            # Verificamos si el videojuego existe
+            $registro = mysqli_query($conexion, "SELECT * FROM videojuego WHERE id_videojuego = '$id'");
 
-                <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
-                </div>
+            if (mysqli_num_rows($registro) > 0) {
+                # Eliminamos primero las copias asociadas
+                mysqli_query($conexion, "DELETE FROM copia WHERE id_videojuego = '$id'") 
+                    or die("<div class='alert alert-danger shadow rounded'>Problemas al eliminar las copias asociadas: " . mysqli_error($conexion) . "</div>");
 
-            </form>
-        </div>
-    </div>
+                # Luego eliminamos el videojuego
+                mysqli_query($conexion, "DELETE FROM videojuego WHERE id_videojuego = '$id'") 
+                    or die("<div class='alert alert-danger shadow rounded'>Problemas al eliminar el videojuego: " . mysqli_error($conexion) . "</div>");
+
+                echo "<div class='alert alert-success shadow rounded'>
+                        El videojuego con ID <strong>$id</strong> ha sido eliminado correctamente.
+                      </div>";
+            } else {
+                echo "<div class='alert alert-warning shadow rounded'>
+                        No se encontró ningún videojuego con el ID <strong>$id</strong>.
+                      </div>";
+            }
+
+            mysqli_close($conexion);
+        ?>
+    </main>
 
     <!-- FOOTER -->
     <footer class="bg-dark text-white mt-5 p-5">
@@ -84,40 +94,5 @@ if (!isset($_SESSION['id_trabajador'])) {
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
-    <script>
-        document.getElementById("searchJuego").addEventListener("input", function () {
-            let texto = this.value;
-
-            if (texto.length < 2) {
-                document.getElementById("listaJuegos").innerHTML = "";
-                return;
-            }
-
-            fetch("../TratarCopias/buscarJuegos.php?query=" + texto)
-                .then(res => res.json())
-                .then(data => {
-                    const lista = document.getElementById("listaJuegos");
-                    lista.innerHTML = "";
-
-                    data.forEach(juego => {
-                        const item = document.createElement("div");
-                        item.className = "item-juego p-2 border-bottom";
-                        item.textContent = `${juego.titulo} (${juego.plataforma})`;
-                        item.dataset.id = juego.id_videojuego;
-                        item.dataset.nombre = juego.titulo;
-
-                        item.onclick = () => {
-                            document.getElementById("searchJuego").value = item.dataset.nombre;
-                            document.getElementById("id_videojuego").value = item.dataset.id;
-                            lista.innerHTML = "";
-                        };
-
-                        lista.appendChild(item);
-                    });
-                });
-        });
-    </script>
 </body>
 </html>
