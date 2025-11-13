@@ -45,6 +45,7 @@
     } 
     
     
+    
     $query = "INSERT INTO trabajador (nombre, apellidos, dni, fecha_nacimiento, email, usuario,contrasena_hash,admin,id_tienda) VALUES ('$nombre', '$apellido', '$dni', '$fecha_nacimiento', '$email', '$usuario', '$password2','$admin','$id_tienda')";
     
     $ejecutar = mysqli_query($conexion, $query);
