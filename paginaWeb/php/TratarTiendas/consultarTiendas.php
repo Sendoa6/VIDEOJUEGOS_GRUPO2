@@ -12,11 +12,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nueva Copia - Procesar</title>
+    <title>Consultar Videojuegos</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../estilos/estilosNuevaCopia.css">
+    <link rel="stylesheet" href="../../estilos/estilosConsultarVideojuegos.css">
     <link rel="icon" href="../../imagenes/favicon.png">
 </head>
 <body>
@@ -28,9 +28,9 @@
         <img src="../../imagenes/logoAltF4.png" alt="Alt+F4" class="img-fluid" style="max-width: 6%;">
     </header>
 
-    <!-- BOTÓN VOLVER -->
+    <!-- BOTON VOLVER -->
     <div class="container my-4">
-        <a href="indexCopias.php" class="btn btn-light shadow rounded d-inline-flex align-items-center hover-scale">
+        <a href="indexVideojuegos.php" class="btn hover-scale btn-light shadow rounded d-inline-flex align-items-center hover-scale">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="me-2" viewBox="0 0 24 24">
                 <path d="m7.825 12l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T5.426 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7zm6.6 0l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T12.026 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7z"/>
             </svg>
@@ -38,52 +38,40 @@
         </a>
     </div>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="container p-5 my-5 text-center">
+    <!-- TITULO -->
+    <h2 class="text-center my-4"><i>Listado de videojuegos:</i></h2>
 
-        <?php
-        include "../../DataBase/conexiones.php";
+    <!-- TABLA -->
+    <div class="container my-5">
+        <div class="table-responsive shadow rounded">
+            <table class="table table-bordered table-striped mb-0">
+                <thead class="table-dark text-white">
+                    <tr>
+                        <th>ID</th>
+                        <th>Direccion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        include '../../DataBase/conexiones.php';
+                        $query = "SELECT id_tienda, direccion FROM tienda";
+                        $result = mysqli_query($conexion, $query);
 
-        $id_videojuego = $_POST["id_videojuego"];
-        $precio_compra = $_POST["precio_compra"];
-        $nuevo = ($_POST['nuevo'] === "nuevo") ? "nuevo" : "seminuevo";
-        $unidades = $_POST["unidades"];
-
-        $check = mysqli_query($conexion, "SELECT c.id_videojuego, c.nuevo 
-        FROM copia c JOIN videojuego v ON v.id_videojuego = c.id_videojuego
-        WHERE c.id_videojuego = '$id_videojuego' AND c.nuevo = '$nuevo'");
-
-        if (mysqli_num_rows($check) > 0) {
-
-            $sqlUpdate = "UPDATE copia SET unidades = unidades + '$unidades' 
-                          WHERE id_videojuego = '$id_videojuego' AND nuevo = '$nuevo'";
-
-            mysqli_query($conexion, $sqlUpdate);
-
-            echo "<div class='alert alert-success shadow rounded'>
-                    Se ha actualizado el número de copias.
-                  </div>";
-
-        } else {
-
-            $sqlInsert = "INSERT INTO copia (id_videojuego, precio_compra, nuevo, unidades) 
-            VALUES ('$id_videojuego', '$precio_compra', '$nuevo', '$unidades')";
-
-            if (mysqli_query($conexion, $sqlInsert)) {
-                echo "<div class='alert alert-success shadow rounded'>
-                        Se ha actualizado el número de copias del videojuego con ID: (ID: $id_videojuego).
-                      </div>";
-            } else {
-                echo "<div class='alert alert-danger shadow rounded'>
-                        Error al insertar copias: " . mysqli_error($conexion) . "
-                      </div>";
-            }
-        }
-
-        mysqli_close($conexion);
-        ?>
-
-    </main>
+                        if ($result && mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($row['id_tienda']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['direccion']) . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='7' class='text-center'>No hay Tiendas registradas.</td></tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer class="bg-dark text-white mt-5 p-5">
