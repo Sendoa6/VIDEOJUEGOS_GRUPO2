@@ -10,7 +10,7 @@
 
     $nombre = $_POST["nombre"];
     $apellido = $_POST["apellidos"];
-    $dni = $_POST["dni"];
+    $dni = strtoupper(trim($_POST['dni']));
     $fecha_nacimiento = $_POST["fecha_nacimiento"];
     $email = $_POST["email"];
     $usuario = $_POST["usuario"];
@@ -44,7 +44,27 @@
         exit();
     } 
     
-    
+    // Validar formato del DNI
+    // Separar números y letra
+    $numero = substr($dni, 0, -1); // Todos menos el último carácter
+    $letra = substr($dni, -1);     // Último carácter
+
+    // Comprobar que el número tenga 8 dígitos
+    if (!is_numeric($numero) || strlen($numero) != 8) {
+        echo "<script type='text/javascript'>alert('Error. El DNI debe tener 8 números.');</script>";
+        header("Refresh: 0.1; url=nuevoTrabajador.php");
+        exit;
+    }
+
+    // Comprobar que la letra sea correcta
+    $letras_validas = "TRWAGMYFPDXBNJZSQVHLCKE";
+    $letra_correcta = $letras_validas[$numero % 23];
+
+    if ($letra !== $letra_correcta) {
+        echo "<script type='text/javascript'>alert('Error. Letra del DNI incorrecta.');</script>";
+        header("Refresh: 0.1; url=nuevoTrabajador.php");
+        exit;
+    }
     
     $query = "INSERT INTO trabajador (nombre, apellidos, dni, fecha_nacimiento, email, usuario,contrasena_hash,admin,id_tienda) VALUES ('$nombre', '$apellido', '$dni', '$fecha_nacimiento', '$email', '$usuario', '$password2','$admin','$id_tienda')";
     
@@ -53,7 +73,7 @@
     
     if ($ejecutar){
         echo "<script type='text/javascript'>alert('Usuario creado correctamente');</script>";
-        header("Refresh: 0.1; url=index.php");
+        header("Refresh: 0.1; url=../index.php");
     }
 
     mysqli_close($conexion);
