@@ -24,7 +24,7 @@
     <!-- HEADER -->
     <header class="bg-light border-bottom py-3 d-flex justify-content-between align-items-center px-4">
         <img src="../../imagenes/logoGame.png" alt="GAME" class="img-fluid" style="max-width: 10%;">
-        <h1 class="text-center m-0">GESTIÓN DE VIDEOJUEGOS</h1>
+        <h1 class="text-center m-0">GESTIÓN DE TRABAJADORES</h1>
         <img src="../../imagenes/logoAltF4.png" alt="Alt+F4" class="img-fluid" style="max-width: 6%;">
     </header>
 
@@ -39,7 +39,7 @@
     </div>
 
     <!-- TITULO -->
-    <h2 class="text-center my-4"><i>Listado de videojuegos:</i></h2>
+    <h2 class="text-center my-4"><i>Listado de trabajadores:</i></h2>
 
     <!-- TABLA -->
     <div class="container my-5">
@@ -53,6 +53,7 @@
                         <th>Dni</th>
                         <th>Fecha de nacimiento</th>
                         <th>Email</th>
+                        <th>Usuario</th>
                         <th>Admin</th>
                         <th>Tienda</th>
                     </tr>
@@ -60,23 +61,26 @@
                 <tbody>
                     <?php
                         include '../../DataBase/conexiones.php';
-                        $query = "SELECT id_trabajador, titulo, anio_publicacion, estudio_desarrollo, plataforma, precio_nuevo, precio_seminuevo FROM videojuego";
+                        $query = "SELECT t.id_trabajador, t.nombre, t.apellidos, t.dni, t.fecha_nacimiento, t.email, t.usuario, t.admin, ti.direccion AS direccion_tienda FROM trabajador t JOIN tienda ti ON t.id_tienda = ti.id_tienda ORDER BY ti.direccion ASC";
+
                         $result = mysqli_query($conexion, $query);
 
                         if ($result && mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($row['id_trabajador']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['titulo']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['anio_publicacion']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['estudio_desarrollo']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['plataforma']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['precio_nuevo']) . " €</td>";
-                                echo "<td>" . htmlspecialchars($row['precio_seminuevo']) . " €</td>";
+                                echo "<td>" . htmlspecialchars($row['nombre']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['apellidos']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['dni']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['fecha_nacimiento']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['usuario']) . "</td>";
+                                echo "<td>" . ($row['admin'] == 1 ? 'Sí' : 'No') . "</td>";
+                                echo "<td>" . htmlspecialchars($row['direccion_tienda']) . "</td>";
                                 echo "</tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='7' class='text-center'>No hay Videojuegos registrados.</td></tr>";
+                            echo "<tr><td colspan='9' class='text-center'>No hay trabajadores registrados.</td></tr>";
                         }
                     ?>
                 </tbody>
