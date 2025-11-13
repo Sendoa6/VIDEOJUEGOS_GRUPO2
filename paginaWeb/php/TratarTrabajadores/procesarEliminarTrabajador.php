@@ -1,11 +1,13 @@
 <?php
-    session_start();
-    include '../../DataBase/conexiones.php';
-    if (!isset($_SESSION['id_trabajador'])) {
-        session_destroy();
-        header("Location: ../Sessions/inicio_sesion.php");
-        exit();
-    }
+session_start();
+include '../../DataBase/conexiones.php';
+
+// Solo los administradores pueden acceder
+if (!isset($_SESSION['id_trabajador']) || $_SESSION['admin'] != 1) {
+    session_destroy();
+    header("Location: ../Sessions/inicio_sesion.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -28,9 +30,9 @@
         <img src="../../imagenes/logoAltF4.png" alt="Alt+F4" class="img-fluid" style="max-width: 6%;">
     </header>
 
-    <!-- BOTON VOLVER -->
+    <!-- BOTÓN VOLVER -->
     <div class="container my-4">
-        <a href="eliminarVideojuego.php" class="btn btn-light hover-scale shadow rounded d-inline-flex align-items-center hover-scale">
+        <a href="eliminarTrabajador.php" class="btn btn-light hover-scale shadow rounded d-inline-flex align-items-center hover-scale">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="me-2" viewBox="0 0 24 24">
                 <path d="m7.825 12l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T5.426 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7zm6.6 0l3.875 3.9q.275.275.288.688t-.288.712q-.275.275-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T12.026 12t.063-.375t.212-.325l4.6-4.6q.275-.275.688-.287t.712.287q.275.275.275.7t-.275.7z"/>
             </svg>
@@ -41,31 +43,30 @@
     <!-- CONTENIDO PRINCIPAL -->
     <main class="container p-5 my-5 text-center">
         <?php
-            include '../../DataBase/conexiones.php';  
+            // Obtenemos el ID del trabajador a eliminar
+            $id = $_POST['idTrabajador'];
 
-            # Obtenemos el ID
-            $id = $_POST['idVideojuego'];
+                $registro = mysqli_query($conexion, "SELECT * FROM trabajador WHERE id_trabajador = '$id'");
 
-            # Verificamos si el videojuego existe
-            $registro = mysqli_query($conexion, "SELECT * FROM videojuego WHERE id_videojuego = '$id'");
+                if (mysqli_num_rows($registro) > 0) {
+                    // Eliminamos el trabajador
+                    $delete = mysqli_query($conexion, "DELETE FROM trabajador WHERE id_trabajador = '$id'");
 
-            if (mysqli_num_rows($registro) > 0) {
-                # Eliminamos primero las copias asociadas
-                mysqli_query($conexion, "DELETE FROM copia WHERE id_videojuego = '$id'") 
-                    or die("<div class='alert alert-danger shadow rounded'>Problemas al eliminar las copias asociadas: " . mysqli_error($conexion) . "</div>");
-
-                # Luego eliminamos el videojuego
-                mysqli_query($conexion, "DELETE FROM videojuego WHERE id_videojuego = '$id'") 
-                    or die("<div class='alert alert-danger shadow rounded'>Problemas al eliminar el videojuego: " . mysqli_error($conexion) . "</div>");
-
-                echo "<div class='alert alert-success shadow rounded'>
-                        El videojuego con ID <strong>$id</strong> ha sido eliminado correctamente.
-                      </div>";
-            } else {
-                echo "<div class='alert alert-warning shadow rounded'>
-                        No se encontró ningún videojuego con el ID <strong>$id</strong>.
-                      </div>";
-            }
+                    if ($delete) {
+                        echo "<div class='alert alert-success shadow rounded'>
+                                El trabajador con ID <strong>$id</strong> ha sido eliminado correctamente.
+                              </div>";
+                    } else {
+                        echo "<div class='alert alert-danger shadow rounded'>
+                                Error al eliminar el trabajador: " . mysqli_error($conexion) . "
+                              </div>";
+                    }
+                } else {
+                    echo "<div class='alert alert-warning shadow rounded'>
+                            No se encontró ningún trabajador con el ID <strong>$id</strong>.
+                          </div>";
+                }
+            
 
             mysqli_close($conexion);
         ?>
