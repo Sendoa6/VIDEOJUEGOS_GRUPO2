@@ -53,10 +53,12 @@
                 # Eliminamos primero las copias asociadas
                 mysqli_query($conexion, "DELETE FROM copia WHERE id_videojuego = '$id'") 
                     or die("<div class='alert alert-danger shadow rounded'>Problemas al eliminar las copias asociadas: " . mysqli_error($conexion) . "</div>");
+                $deleteCopiasHistorial = mysqli_query($conexion, "INSERT INTO historial (concepto, fecha, id_trabajador) VALUES ('Borrado de las copias asociadas al videojuego con id $id', NOW(), '{$_SESSION['id_trabajador']}')");
 
                 # Luego eliminamos el videojuego
                 mysqli_query($conexion, "DELETE FROM videojuego WHERE id_videojuego = '$id'") 
                     or die("<div class='alert alert-danger shadow rounded'>Problemas al eliminar el videojuego: " . mysqli_error($conexion) . "</div>");
+                $deleteVideojuegosHistorial = mysqli_query($conexion, "INSERT INTO historial (concepto, fecha, id_trabajador) VALUES ('Borrado del videojuego con id $id', NOW(), '{$_SESSION['id_trabajador']}')");
 
                 echo "<div class='alert alert-success shadow rounded'>
                         El videojuego con ID <strong>$id</strong> ha sido eliminado correctamente.
