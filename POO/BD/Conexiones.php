@@ -1,6 +1,6 @@
 <?php 
 
-    $conexion = mysqli_connect("localhost","root","","videojuegos_db");
+$conexion = new mysqli("54.209.175.92", "php", "", "videojuegos_db");
     // if ($conexion){
     //     echo"Conectado exitosamente a la base de datos";
     // }else{
