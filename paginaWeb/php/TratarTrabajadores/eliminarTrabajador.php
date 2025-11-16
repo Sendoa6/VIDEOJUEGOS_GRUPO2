@@ -1,10 +1,14 @@
 <?php
 session_start();
 include '../../DataBase/conexiones.php';
-if (!isset($_SESSION['id_trabajador'])) {
-    session_destroy();
-    header("Location: ../Sessions/inicio_sesion.php");
-    exit();
+// Solo los administradores pueden acceder
+if (!isset($_SESSION['id_trabajador']) || $_SESSION['admin'] != 1) {
+    echo "
+    <script>
+        alert('Acceso restringido. Solo los administradores pueden entrar en esta sección.\\n\\nSi necesitas permisos, por favor habla con el encargado o un administrador autorizado.');
+        window.location.href = '/paginaWeb/php/index.php';
+    </script>";
+    exit;
 }
 ?>
 <!DOCTYPE html>
