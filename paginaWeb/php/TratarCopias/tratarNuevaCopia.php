@@ -57,8 +57,11 @@
 
             $sqlUpdate = "UPDATE copia SET unidades = unidades + '$unidades' 
                           WHERE id_videojuego = '$id_videojuego' AND nuevo = '$nuevo'";
+            $sqlInsertHistorial = "INSERT INTO historial (concepto, fecha, id_trabajador) VALUES ('Actualización del número de copias del videojuego $id_videojuego con $unidades unidades, por $precio_compra € y $nuevo', NOW(), '{$_SESSION['id_trabajador']}')";
+
 
             mysqli_query($conexion, $sqlUpdate);
+            mysqli_query($conexion, $sqlInsertHistorial);
 
             echo "<div class='alert alert-success shadow rounded'>
                     Se ha actualizado el número de copias.
@@ -68,8 +71,10 @@
 
             $sqlInsert = "INSERT INTO copia (id_videojuego, precio_compra, nuevo, unidades) 
             VALUES ('$id_videojuego', '$precio_compra', '$nuevo', '$unidades')";
+            $sqlInsertHistorial = "INSERT INTO historial (concepto, fecha, id_trabajador) VALUES ('Insert de la copia/s del videojuego $id_videojuego con $unidades unidades, por $precio_compra € y $nuevo', NOW(), '{$_SESSION['id_trabajador']}')";
 
             if (mysqli_query($conexion, $sqlInsert)) {
+                mysqli_query($conexion, $sqlInsertHistorial);
                 echo "<div class='alert alert-success shadow rounded'>
                         Se ha actualizado el número de copias del videojuego con ID: (ID: $id_videojuego).
                       </div>";

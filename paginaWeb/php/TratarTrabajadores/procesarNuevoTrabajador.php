@@ -46,7 +46,7 @@
     
     // Validar formato del DNI
     // Separar números y letra
-    $numero = substr($dni, 0, -1); // Todos menos el último carácter
+    $numero = substr($dni, 0, -1); // todos menos el último carácter
     $letra = substr($dni, -1);     // Último carácter
 
     // Comprobar que el número tenga 8 dígitos
@@ -72,6 +72,7 @@
 
     
     if ($ejecutar){
+        $insertTrabajadorHistorial = mysqli_query($conexion, "INSERT INTO historial (concepto, fecha, id_trabajador) VALUES ('Insert de el trabajador con nombre $nombre apellidos $apellido usuario $usuario', NOW(), '{$_SESSION['id_trabajador']}')");
         echo "<script type='text/javascript'>alert('Usuario creado correctamente');</script>";
         header("Refresh: 0.1; url=../index.php");
     }

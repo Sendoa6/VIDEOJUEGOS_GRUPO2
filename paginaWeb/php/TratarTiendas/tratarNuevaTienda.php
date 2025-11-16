@@ -55,6 +55,7 @@
 
                 if ($ejecutar) {
                     $idTienda = mysqli_insert_id($conexion);
+                    $insertTiendaHistorial = mysqli_query($conexion, "INSERT INTO historial (concepto, fecha, id_trabajador) VALUES ('Insert de nueva tienda con direccion $direccion y id $idTienda', NOW(), '{$_SESSION['id_trabajador']}')");
                     echo "<div class='alert alert-success shadow rounded'>
                             Tienda registrada correctamente con ID: <b>$idTienda</b><br>
                             Dirección: <b>$direccion</b>

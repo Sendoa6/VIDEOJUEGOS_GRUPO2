@@ -49,10 +49,15 @@ if (!isset($_SESSION['id_trabajador']) || $_SESSION['admin'] != 1) {
                 $registro = mysqli_query($conexion, "SELECT * FROM trabajador WHERE id_trabajador = '$id'");
 
                 if (mysqli_num_rows($registro) > 0) {
+
+                    $fila = mysqli_fetch_assoc($registro);
+                    $nombre = $fila['nombre'];$usuario = $fila['usuario'];$apellidos = $fila['apellidos'];     
+
                     // Eliminamos el trabajador
                     $delete = mysqli_query($conexion, "DELETE FROM trabajador WHERE id_trabajador = '$id'");
 
                     if ($delete) {
+                        $deleteTrabajadorHistorial = mysqli_query($conexion, "INSERT INTO historial (concepto, fecha, id_trabajador) VALUES ('Borrado de el trabajador con nombre $nombre apellidos $apellidos usuario $usuario y id $id', NOW(), '{$_SESSION['id_trabajador']}')");
                         echo "<div class='alert alert-success shadow rounded'>
                                 El trabajador con ID <strong>$id</strong> ha sido eliminado correctamente.
                               </div>";

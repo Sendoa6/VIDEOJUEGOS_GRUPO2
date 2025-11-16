@@ -39,7 +39,9 @@ if (!isset($_SESSION['id_trabajador'])) {
 
             if (mysqli_num_rows($registro) > 0) {
                 $deleteTrabajadores = mysqli_query($conexion, "DELETE FROM trabajador WHERE id_tienda = '$id'");
+                $deleteTrabajadoresHistorial = mysqli_query($conexion, "INSERT INTO historial (concepto, fecha, id_trabajador) VALUES ('Borrado de todos los trabajadores de la tienda $id', NOW(), '{$_SESSION['id_trabajador']}')");
                 $deleteTienda = mysqli_query($conexion, "DELETE FROM tienda WHERE id_tienda = '$id'");
+                $deleteTiendaHistorial = mysqli_query($conexion, "INSERT INTO historial (concepto, fecha, id_trabajador) VALUES ('Borrado de la tienda $id', NOW(), '{$_SESSION['id_trabajador']}')");
 
                 if ($deleteTienda) {
                     echo "<div class='alert alert-success shadow rounded'>La tienda con ID <strong>$id</strong> y todos sus trabajadores asociados han sido eliminados correctamente.</div>";
