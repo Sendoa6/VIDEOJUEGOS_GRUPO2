@@ -22,10 +22,14 @@ if (!isset($_SESSION['id_trabajador'])) {
 <body>
 
     <!-- HEADER -->
-    <header class="bg-light border-bottom py-3 d-flex justify-content-between align-items-center px-4">
-        <a href="../index.php"><img src="../../imagenes/logoGame.png" alt="GAME" class="img-fluid" style="max-width: 15%;"></a>
-        <h1 class="text-center m-0">GESTIÓN DE TRABAJADORES</h1>
-        <img src="../../imagenes/logoAltF4.png" alt="Alt+F4" class="img-fluid" style="max-width: 6%;">
+    <header class="bg-light border-bottom py-3 d-flex align-items-center justify-content-center px-4 gap-3">
+        <a href="../index.php"><img src="../../imagenes/logoGame.png" alt="GAME" class="img-fluid header-img"></a>
+
+        <h1 class="text-center m-0 flex-grow-1">GESTIÓN DE VIDEOJUEGOS</h1>
+
+        <a href="../Sessions/cerrar_sesion.php">
+            <img src="../../imagenes/iconoCerrarSession.png" alt="Cerrar sesión" class="header-img-small">
+        </a>
     </header>
 
     <!-- BOTON VOLVER -->

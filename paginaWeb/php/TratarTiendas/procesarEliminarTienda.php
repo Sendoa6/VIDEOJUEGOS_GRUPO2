@@ -19,11 +19,16 @@ if (!isset($_SESSION['id_trabajador'])) {
     <link rel="icon" href="../../imagenes/favicon.png">
 </head>
 <body>
-    <header class="bg-light border-bottom py-3 d-flex justify-content-between align-items-center px-4">
-        <a href="../index.php"><img src="../../imagenes/logoGame.png" alt="GAME" class="img-fluid" style="max-width: 15%;"></a>
-        <h1 class="text-center m-0">GESTIÓN DE TIENDAS</h1>
-        <img src="../../imagenes/logoAltF4.png" alt="Alt+F4" class="img-fluid" style="max-width: 6%;">
+    <header class="bg-light border-bottom py-3 d-flex align-items-center justify-content-center px-4 gap-3">
+        <a href="../index.php"><img src="../../imagenes/logoGame.png" alt="GAME" class="img-fluid header-img"></a>
+
+        <h1 class="text-center m-0 flex-grow-1">GESTIÓN DE VIDEOJUEGOS</h1>
+
+        <a href="../Sessions/cerrar_sesion.php">
+            <img src="../../imagenes/iconoCerrarSession.png" alt="Cerrar sesión" class="header-img-small">
+        </a>
     </header>
+    
     <div class="container my-4">
         <a href="eliminarTienda.php" class="btn btn-light hover-scale shadow rounded d-inline-flex align-items-center hover-scale">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="me-2" viewBox="0 0 24 24">
