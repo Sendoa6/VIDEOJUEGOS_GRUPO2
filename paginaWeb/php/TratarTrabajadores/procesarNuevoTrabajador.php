@@ -1,5 +1,4 @@
 <?php
-
     session_start();
     include '../../DataBase/conexiones.php';
     if (isset($_SESSION['admin']) && $_SESSION['admin'] == 0) {
@@ -82,5 +81,4 @@
     }
 
     mysqli_close($conexion);
-
 ?>
