@@ -20,7 +20,7 @@
 
         <h1 class="text-center m-0 flex-grow-1">GESTIÓN DE VIDEOJUEGOS</h1>
 
-        <a href="../Sessions/cerrar_sesion.php">
+        <a href="/paginaWeb/php/Sessions/cerrar_sesion.php">
             <img src="../imagenes/iconoCerrarSession.png" alt="Cerrar sesión" class="header-img-small">
         </a>
     </header>
