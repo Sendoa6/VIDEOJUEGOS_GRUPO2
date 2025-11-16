@@ -25,7 +25,7 @@ if (!isset($_SESSION['id_trabajador']) || $_SESSION['admin'] != 1) {
 
     <!-- HEADER -->
     <header class="bg-light border-bottom py-3 d-flex justify-content-between align-items-center px-4">
-        <img src="../../imagenes/logoGame.png" alt="GAME" class="img-fluid" style="max-width: 10%;">
+        <a href="../index.php"><img src="../../imagenes/logoGame.png" alt="GAME" class="img-fluid" style="max-width: 15%;"></a>
         <h1 class="text-center m-0">GESTIÓN DE TRABAJADORES</h1>
         <img src="../../imagenes/logoAltF4.png" alt="Alt+F4" class="img-fluid" style="max-width: 6%;">
     </header>
