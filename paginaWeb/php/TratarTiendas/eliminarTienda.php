@@ -48,7 +48,7 @@ if (!isset($_SESSION['id_trabajador']) || $_SESSION['admin'] != 1) {
 
     <div class="container d-flex justify-content-center my-5 p-3">
         <div class="card p-4 shadow rounded w-100" style="max-width: 400px;">
-            <form action="procesarEliminarTienda.php" method="post" class="row g-3">
+            <form action="procesarEliminarTienda.php" method="post" class="row g-3" onsubmit="return confirm('¿Seguro que quieres borrar este elemento?');">
 
                 <div class="col-12">
                     <label for="searchTienda" class="form-label">Busca la tienda:</label>
