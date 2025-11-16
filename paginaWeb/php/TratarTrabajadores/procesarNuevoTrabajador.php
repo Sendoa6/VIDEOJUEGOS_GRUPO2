@@ -8,6 +8,7 @@
         exit();
     }
 
+    // Recoger datos del formulario
     $nombre = $_POST["nombre"];
     $apellido = $_POST["apellidos"];
     $dni = strtoupper(trim($_POST['dni']));
@@ -21,16 +22,19 @@
     $admin = isset($_POST['admin']) ? 1 : 0;
     $id_tienda = $_POST['id_tienda'];
 
+    // Validaciones
     if ($password2 != $password){
         echo "<script type='text/javascript'>alert('Error. Las contraseñas no coinciden.');</script>";
         header("Refresh: 0.1; url=nuevoTrabajador.php");
         exit;
     }
+    // Validar formato del email
     if (strpos($email, '@') == false && strpos($email, '.') == false) {
         echo "<script type='text/javascript'>alert('Error. Correo electrónico inválido.');</script>";
         header("Refresh: 0.1; url=nuevoTrabajador.php");
         exit;
     }
+    // Verificar si el usuario o correo ya existen en la base de datos
     $verificar_usuario = mysqli_query($conexion, "SELECT * FROM trabajador WHERE usuario='$usuario' ");
     if (mysqli_num_rows($verificar_usuario) > 0){
         echo "<script type='text/javascript'>alert('Este usuario ya está en uso, intenta con uno diferente');</script>";
@@ -46,8 +50,8 @@
     
     // Validar formato del DNI
     // Separar números y letra
-    $numero = substr($dni, 0, -1); // todos menos el último carácter
-    $letra = substr($dni, -1);     // Último carácter
+    $numero = substr($dni, 0, -1); //Almacena todos menos el ultimo carácter
+    $letra = substr($dni, -1);     //Almacena el ultimo carácter
 
     // Comprobar que el número tenga 8 dígitos
     if (!is_numeric($numero) || strlen($numero) != 8) {
