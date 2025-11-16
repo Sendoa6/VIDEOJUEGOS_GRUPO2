@@ -16,8 +16,8 @@
     $usuario = $_POST["usuario"];
     $password = $_POST["password"];
     $password2 = $_POST["password2"];
-    $password = hash('sha512', $password);
-    $password2 = hash('sha512', $password2);
+    $password = hash('sha256', $password);
+    $password2 = hash('sha256', $password2);
     $admin = isset($_POST['admin']) ? 1 : 0;
     $id_tienda = $_POST['id_tienda'];
 
