@@ -10,3 +10,17 @@ body{
     transform: scale(1.08);
     background-color: rgb(230, 230, 230);
 }
+
+.header-img {
+    width: 120px;
+    height: auto;
+}
+
+.header-img-small {
+    width: 40px;
+    height: auto;
+}
+
+header h1 {
+    text-align: center;
+}
