@@ -70,38 +70,46 @@ if (!isset($_SESSION['id_trabajador'])) {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        document.getElementById("searchTienda").addEventListener("input", function () {
-            let texto = this.value;
+<script>
+    // Detecta cuando el usuario escribe algo en el buscador de tiendas
+    document.getElementById("searchTienda").addEventListener("input", function () {
+        let texto = this.value;
 
-            if (texto.length < 2) {
-                document.getElementById("listaTiendas").innerHTML = "";
-                return;
-            }
+        // Si escribió menos de 2 caracteres, se limpia la lista y no se hace búsqueda
+        if (texto.length < 2) {
+            document.getElementById("listaTiendas").innerHTML = "";
+            return;
+        }
 
-            fetch("buscarTienda.php?query=" + texto)
-                .then(res => res.json())
-                .then(data => {
-                    const lista = document.getElementById("listaTiendas");
-                    lista.innerHTML = "";
+        // Llama al servidor para buscar tiendas que coincidan con lo escrito
+        fetch("buscarTienda.php?query=" + texto)
+            .then(res => res.json())
+            .then(data => {
+                const lista = document.getElementById("listaTiendas");
+                lista.innerHTML = ""; // Limpia resultados anteriores
 
-                    data.forEach(tienda => {
-                        const item = document.createElement("div");
-                        item.className = "item-tienda p-2 border-bottom";
-                        item.textContent = tienda.direccion;
-                        item.dataset.id = tienda.id_tienda;
-                        item.dataset.nombre = tienda.direccion;
+                // Crea un elemento por cada tienda encontrada
+                data.forEach(tienda => {
+                    const item = document.createElement("div");
+                    item.className = "item-tienda p-2 border-bottom"; // Estilo visual
+                    item.textContent = tienda.direccion;
 
-                        item.onclick = () => {
-                            document.getElementById("searchTienda").value = item.dataset.nombre;
-                            document.getElementById("id_tienda").value = item.dataset.id;
-                            lista.innerHTML = "";
-                        };
+                    // Guarda datos de la tienda dentro del elemento
+                    item.dataset.id = tienda.id_tienda;
+                    item.dataset.nombre = tienda.direccion;
 
-                        lista.appendChild(item);
-                    });
+                    // Cuando el usuario hace clic, se selecciona la tienda y se llena el formulario
+                    item.onclick = () => {
+                        document.getElementById("searchTienda").value = item.dataset.nombre;
+                        document.getElementById("id_tienda").value = item.dataset.id;
+                        lista.innerHTML = ""; // Oculta la lista después de elegir
+                    };
+
+                    lista.appendChild(item); // Agrega el ítem a la lista visible
                 });
-        });
-    </script>
+            });
+    });
+</script>
+
 </body>
 </html>

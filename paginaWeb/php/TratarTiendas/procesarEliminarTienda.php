@@ -34,26 +34,50 @@ if (!isset($_SESSION['id_trabajador'])) {
     </div>
     <main class="container p-5 my-5 text-center">
         <?php
-            $id = $_POST['idTienda'];
-            $registro = mysqli_query($conexion, "SELECT * FROM tienda WHERE id_tienda = '$id'");
+        $id = $_POST['idTienda'];
+        // Obtiene el ID de la tienda que se quiere eliminar
 
-            if (mysqli_num_rows($registro) > 0) {
-                $deleteTrabajadores = mysqli_query($conexion, "DELETE FROM trabajador WHERE id_tienda = '$id'");
-                $deleteTrabajadoresHistorial = mysqli_query($conexion, "INSERT INTO historial (concepto, fecha, id_trabajador) VALUES ('Borrado de todos los trabajadores de la tienda $id', NOW(), '{$_SESSION['id_trabajador']}')");
-                $deleteTienda = mysqli_query($conexion, "DELETE FROM tienda WHERE id_tienda = '$id'");
-                $deleteTiendaHistorial = mysqli_query($conexion, "INSERT INTO historial (concepto, fecha, id_trabajador) VALUES ('Borrado de la tienda $id', NOW(), '{$_SESSION['id_trabajador']}')");
+        $registro = mysqli_query($conexion, "SELECT * FROM tienda WHERE id_tienda = '$id'");
+        // Busca si la tienda existe en la base de datos
 
-                if ($deleteTienda) {
-                    echo "<div class='alert alert-success shadow rounded'>La tienda con ID <strong>$id</strong> y todos sus trabajadores asociados han sido eliminados correctamente.</div>";
-                } else {
-                    echo "<div class='alert alert-danger shadow rounded'>Error al eliminar la tienda: " . mysqli_error($conexion) . "</div>";
-                }
+        if (mysqli_num_rows($registro) > 0) {
+            // Si la tienda existe, primero elimina a los trabajadores relacionados
+            $deleteTrabajadores = mysqli_query($conexion, "DELETE FROM trabajador WHERE id_tienda = '$id'");
+            // Registra en el historial que se eliminaron trabajadores
+            $deleteTrabajadoresHistorial = mysqli_query($conexion, 
+                "INSERT INTO historial (concepto, fecha, id_trabajador) 
+                VALUES ('Borrado de todos los trabajadores de la tienda $id', NOW(), '{$_SESSION['id_trabajador']}')");
+
+            // Luego elimina la tienda
+            $deleteTienda = mysqli_query($conexion, "DELETE FROM tienda WHERE id_tienda = '$id'");
+            // Registra en el historial que se eliminó la tienda
+            $deleteTiendaHistorial = mysqli_query($conexion, 
+                "INSERT INTO historial (concepto, fecha, id_trabajador) 
+                VALUES ('Borrado de la tienda $id', NOW(), '{$_SESSION['id_trabajador']}')");
+
+            // Muestra mensaje de éxito o error según lo que pase al eliminar
+            if ($deleteTienda) {
+                echo "<div class='alert alert-success shadow rounded'>
+                        La tienda con ID <strong>$id</strong> y todos sus trabajadores asociados 
+                        han sido eliminados correctamente.
+                    </div>";
             } else {
-                echo "<div class='alert alert-warning shadow rounded'>No se encontró ninguna tienda con el ID <strong>$id</strong>.</div>";
+                echo "<div class='alert alert-danger shadow rounded'>
+                        Error al eliminar la tienda: " . mysqli_error($conexion) . "
+                    </div>";
             }
 
-            mysqli_close($conexion);
+        } else {
+            // Si la tienda no existe, muestra un aviso
+            echo "<div class='alert alert-warning shadow rounded'>
+                    No se encontró ninguna tienda con el ID <strong>$id</strong>.
+                </div>";
+        }
+
+        mysqli_close($conexion);
+        // Cierra la conexión a la base de datos
         ?>
+
     </main>
     <footer class="bg-dark text-white mt-5 p-5">
         <div class="container d-flex justify-content-between align-items-center flex-wrap">

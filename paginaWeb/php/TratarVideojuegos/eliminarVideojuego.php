@@ -85,39 +85,46 @@ if (!isset($_SESSION['id_trabajador'])) {
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+<script>
+    // Detecta cuando el usuario escribe en el buscador de videojuegos
+    document.getElementById("searchJuego").addEventListener("input", function () {
+        let texto = this.value;
 
-    <script>
-        document.getElementById("searchJuego").addEventListener("input", function () {
-            let texto = this.value;
+        // Si el texto es muy corto, se limpia la lista y no se hace búsqueda
+        if (texto.length < 2) {
+            document.getElementById("listaJuegos").innerHTML = "";
+            return;
+        }
 
-            if (texto.length < 2) {
-                document.getElementById("listaJuegos").innerHTML = "";
-                return;
-            }
+        // Pide al servidor los juegos que coincidan con lo que se está escribiendo
+        fetch("../TratarCopias/buscarJuegos.php?query=" + texto)
+            .then(res => res.json())
+            .then(data => {
+                const lista = document.getElementById("listaJuegos");
+                lista.innerHTML = ""; // Limpia resultados anteriores
 
-            fetch("../TratarCopias/buscarJuegos.php?query=" + texto)
-                .then(res => res.json())
-                .then(data => {
-                    const lista = document.getElementById("listaJuegos");
-                    lista.innerHTML = "";
+                // Por cada juego encontrado, crea un elemento visual para mostrarlo
+                data.forEach(juego => {
+                    const item = document.createElement("div");
+                    item.className = "item-juego p-2 border-bottom"; // Estilos del ítem
+                    item.textContent = `${juego.titulo} (${juego.plataforma})`;
 
-                    data.forEach(juego => {
-                        const item = document.createElement("div");
-                        item.className = "item-juego p-2 border-bottom";
-                        item.textContent = `${juego.titulo} (${juego.plataforma})`;
-                        item.dataset.id = juego.id_videojuego;
-                        item.dataset.nombre = juego.titulo;
+                    // Guarda datos del juego dentro del elemento
+                    item.dataset.id = juego.id_videojuego;
+                    item.dataset.nombre = juego.titulo;
 
-                        item.onclick = () => {
-                            document.getElementById("searchJuego").value = item.dataset.nombre;
-                            document.getElementById("id_videojuego").value = item.dataset.id;
-                            lista.innerHTML = "";
-                        };
+                    // Cuando se hace clic, el juego se selecciona y se rellena el formulario
+                    item.onclick = () => {
+                        document.getElementById("searchJuego").value = item.dataset.nombre;
+                        document.getElementById("id_videojuego").value = item.dataset.id;
+                        lista.innerHTML = ""; // Oculta la lista después de elegir
+                    };
 
-                        lista.appendChild(item);
-                    });
+                    lista.appendChild(item); // Agrega el ítem a la lista
                 });
-        });
-    </script>
+            });
+    });
+</script>
+
 </body>
 </html>
