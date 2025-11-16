@@ -18,7 +18,7 @@ if (!isset($_SESSION['id_trabajador']) || $_SESSION['admin'] != 1) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de videojuegos</title>
+    <title>Gestión de trabajadores</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -32,7 +32,7 @@ if (!isset($_SESSION['id_trabajador']) || $_SESSION['admin'] != 1) {
     <header class="bg-light border-bottom py-3 d-flex align-items-center justify-content-center px-4 gap-3">
         <a href="../index.php"><img src="../../imagenes/logoGame.png" alt="GAME" class="img-fluid header-img"></a>
 
-        <h1 class="text-center m-0 flex-grow-1">GESTIÓN DE VIDEOJUEGOS</h1>
+        <h1 class="text-center m-0 flex-grow-1">GESTIÓN DE TRABAJADORES</h1>
 
         <a href="../Sessions/cerrar_sesion.php">
             <img src="../../imagenes/iconoCerrarSession.png" alt="Cerrar sesión" class="header-img-small">

@@ -25,7 +25,7 @@
     <header class="bg-light border-bottom py-3 d-flex align-items-center justify-content-center px-4 gap-3">
         <a href="../index.php"><img src="../../imagenes/logoGame.png" alt="GAME" class="img-fluid header-img"></a>
 
-        <h1 class="text-center m-0 flex-grow-1">GESTIÓN DE VIDEOJUEGOS</h1>
+        <h1 class="text-center m-0 flex-grow-1">GESTIÓN DE COPIAS</h1>
 
         <a href="../Sessions/cerrar_sesion.php">
             <img src="../../imagenes/iconoCerrarSession.png" alt="Cerrar sesión" class="header-img-small">
@@ -53,6 +53,7 @@
                     <tr>
                         <th>ID Copia</th>
                         <th>ID Videojuego</th>
+                        <th>ID Tienda</th>
                         <th>Titulo</th>
                         <th>Precio Compra</th>
                         <th>Nuevo</th>
@@ -62,7 +63,7 @@
                 <tbody>
                     <?php
                         include '../../DataBase/conexiones.php';
-                        $query = "SELECT c.id_copia, c.id_videojuego, c.precio_compra, c.nuevo, c.unidades, v.titulo 
+                        $query = "SELECT c.id_copia, c.id_videojuego, c.id_tienda, c.precio_compra, c.nuevo, c.unidades, v.titulo 
                                   FROM copia c 
                                   JOIN videojuego v ON c.id_videojuego=v.id_videojuego";
                         $result = mysqli_query($conexion, $query);
@@ -72,6 +73,7 @@
                                 echo "<tr>";
                                 echo "<td>" . htmlspecialchars($row['id_copia']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['id_videojuego']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['id_tienda']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['titulo']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['precio_compra']) . "</td>";
                                 echo "<td>" . htmlspecialchars($row['nuevo']) . "</td>";
