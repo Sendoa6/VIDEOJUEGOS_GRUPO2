@@ -63,6 +63,7 @@
 
                 if (mysqli_query($conexion, $queryVideojuego)) {
                     $idVideojuego = mysqli_insert_id($conexion);
+                    $insertVideojuegosHistorial = mysqli_query($conexion, "INSERT INTO historial (concepto, fecha, id_trabajador) VALUES ('insert del videojuego $titulo con precio nuevo $precio_nuevo y precio seminuevo $precio_seminuevo con id $idVideojuego', NOW(), '{$_SESSION['id_trabajador']}')");
                     echo "<div class='alert alert-success shadow rounded'>
                             Videojuego '$titulo' insertado correctamente con ID: $idVideojuego
                           </div>";
