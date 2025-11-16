@@ -36,7 +36,7 @@ if (!isset($_SESSION['id_trabajador']) || $_SESSION['admin'] != 1) {
             <img src="../../imagenes/iconoCerrarSession.png" alt="Cerrar sesión" class="header-img-small">
         </a>
     </header>
-    
+
     <!-- BOTÓN VOLVER -->
     <div class="container my-4">
         <a href="indexHistorial.php" class="btn btn-light shadow rounded d-inline-flex align-items-center hover-scale">
@@ -118,7 +118,7 @@ if (!isset($_SESSION['id_trabajador']) || $_SESSION['admin'] != 1) {
             </div>
 
             <div class="text-end">
-                <img src="../imagenes/creativeCommons.png" alt="Creative Commons" class="img-fluid" style="width: 40%;">
+                <img src="../../imagenes/creativeCommons.png" alt="Creative Commons" class="img-fluid" style="width: 40%;">
             </div>
 
         </div>

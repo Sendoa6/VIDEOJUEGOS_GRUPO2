@@ -32,7 +32,7 @@ if (!isset($_SESSION['id_trabajador']) || $_SESSION['admin'] != 1) {
             <img src="../../imagenes/iconoCerrarSession.png" alt="Cerrar sesión" class="header-img-small">
         </a>
     </header>
-    
+
     <div class="container my-4">
         <a href="eliminarTienda.php" class="btn btn-light hover-scale shadow rounded d-inline-flex align-items-center hover-scale">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="me-2" viewBox="0 0 24 24">
@@ -108,7 +108,7 @@ if (!isset($_SESSION['id_trabajador']) || $_SESSION['admin'] != 1) {
             </div>
 
             <div class="text-end">
-                <img src="../imagenes/creativeCommons.png" alt="Creative Commons" class="img-fluid" style="width: 40%;">
+                <img src="../../imagenes/creativeCommons.png" alt="Creative Commons" class="img-fluid" style="width: 40%;">
             </div>
 
         </div>

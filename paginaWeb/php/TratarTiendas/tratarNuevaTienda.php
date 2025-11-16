@@ -100,7 +100,7 @@ if (!isset($_SESSION['id_trabajador']) || $_SESSION['admin'] != 1) {
             </div>
 
             <div class="text-end">
-                <img src="../imagenes/creativeCommons.png" alt="Creative Commons" class="img-fluid" style="width: 40%;">
+                <img src="../../imagenes/creativeCommons.png" alt="Creative Commons" class="img-fluid" style="width: 40%;">
             </div>
 
         </div>
