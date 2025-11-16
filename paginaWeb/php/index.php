@@ -73,14 +73,15 @@
                 <p class="mb-1">2025 GAME. Todos los derechos reservados</p>
 
                 <p class="mb-1">
-                    <a href="https://www.facebook.com/?locale=es_ES" class="text-white text-decoration-underline">Facebook</a><br>
-                    <a href="https://www.instagram.com/" class="text-white text-decoration-underline">Instagram</a><br>
-                    <a href="https://x.com/?lang=es" class="text-white text-decoration-underline">Twitter</a>
+                    <a href="https://www.game.es/" class="text-white text-decoration-underline">Página Oficial de GAME</a><br>
+                    <a href="https://workspace.google.com/intl/es/gmail/" class="text-white text-decoration-underline">Contacto de GAME</a><br>
                 </p>
-
+            </div>
+            <div class="mb-3">
+                <p class="mb-1"><i>Sitio web desarrollado por ALT+F4</i></p>
                 <p class="mb-1">
-                    <a href="https://www.google.com/maps" class="text-white text-decoration-underline">📍Localización</a><br>
-                    <a href="https://workspace.google.com/intl/es/gmail/" class="text-white text-decoration-underline">📩Contáctanos</a>
+                    <a href="https://workspace.google.com/intl/es/gmail/" class="text-white text-decoration-underline">📲Contacto</a><br>
+                    <a href="https://www.google.com/maps" class="text-white text-decoration-underline">🌍Localización</a>
                 </p>
             </div>
 
