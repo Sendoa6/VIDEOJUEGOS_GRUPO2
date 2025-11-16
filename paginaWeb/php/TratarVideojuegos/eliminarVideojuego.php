@@ -48,7 +48,7 @@ if (!isset($_SESSION['id_trabajador'])) {
     <!-- FORMULARIO -->
     <div class="container d-flex justify-content-center my-5 p-3">
         <div class="card p-4 shadow rounded w-100" style="max-width: 400px;">
-            <form action="procesarEliminarVideojuego.php" method="post" class="row g-3">
+            <form action="procesarEliminarVideojuego.php" method="post" class="row g-3" onsubmit="return confirm('¿Seguro que quieres borrar este elemento?');">
 
                 <div class="col-12">
                     <label for="searchJuego" class="form-label">Busca el videojuego:</label>
