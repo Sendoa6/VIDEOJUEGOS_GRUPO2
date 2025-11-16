@@ -14,7 +14,7 @@ $main->cargarTodo();
 <body>
     <?php
         $main->cuantosTrabajadores();
-        $main->queVideojuegos("ps5");
+        $main->queVideojuegos("ps4");
     ?>
 </body>
 </html>
