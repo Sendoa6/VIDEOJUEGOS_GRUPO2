@@ -55,6 +55,13 @@
                 </div>
             </a>
 
+            <a href="TratarHistorial/indexHistorial.php" class="col-10 col-md-4 text-decoration-none text-dark mb-4">
+                <div class="p-4 bg-light shadow rounded text-center hover-scale h-100 d-flex flex-column justify-content-center align-items-center">
+                    <h3 class="mb-3">Gestionar Historial</h3>
+                    <img src="../imagenes/historial.png" class="img-fluid" style="width:100px; height:100px; object-fit:contain;">
+                </div>
+            </a>
+
         </div>
     </div>
 
