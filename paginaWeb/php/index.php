@@ -18,7 +18,7 @@
     <header class="bg-light border-bottom py-3 d-flex justify-content-between align-items-center px-4">
         <img src="../imagenes/logoGame.png" alt="GAME" class="img-fluid" style="max-width: 10%;">
         <h1 class="text-center m-0">GESTIÓN DE VIDEOJUEGOS</h1>
-        <a href="../Sessions/cerrar_sesion.php">
+        <a href="/paginaWeb/php/Sessions/cerrar_sesion.php">
             <img src="../imagenes/iconoCerrarSession.png" 
                 alt="Cerrar sesión" 
                 class="img-fluid" 
