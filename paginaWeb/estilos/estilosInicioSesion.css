@@ -1,61 +1,11 @@
-* {
-    box-sizing: border-box;
-}
-
 body {
-    font-family: Arial, sans-serif;
-    /* background-color: #f4f4f9; */
-    background-image: url(https://wallpaper.forfun.com/fetch/e7/e7bfc1edebf545897f7d266883c4a7f0.jpeg);
+    background-color: rgb(233, 225, 233);
     display: flex;
-    align-items: center;
     justify-content: center;
-    margin: 0;
+    align-items: center;
     min-height: 100vh;
-    padding: 20px;
+    margin: 0;
 }
-
-.caja {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.caja-form {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
+.card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 100%;
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-}
-
-label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-    color: #333;
-}
-
-input[type="text"],
-input[type="date"],
-input[type="password"],
-select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    font-size: 16px;
-}
-
-button {
-    width: 100%;
-}
-img{
-    width: 3em;
 }
