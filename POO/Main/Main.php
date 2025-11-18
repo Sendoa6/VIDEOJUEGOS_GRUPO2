@@ -42,23 +42,13 @@ class Main {
     }
 
     public function queVideojuegos($plataforma) {
-        echo "<table>";
-        echo "<tr>
-                <th>Titulo</th>
-                <th>Año de publicación</th>
-                <th>Desarrolladora</th>
-                <th>Plataforma</th>
-                <th>Precio nuevo</th>
-                <th>Precio 2 mano</th>
-            </tr>";
 
         $encontrado = false;
 
-        for ($i = 0; $i < count($this->videojuegos); $i++) {
-            $videojuego = $this->videojuegos[$i];
-
+        foreach ($this->videojuegos as $videojuego) {
             if (strtolower($videojuego->getPlataforma()) == strtolower($plataforma)) {
                 $encontrado = true;
+
                 echo "<tr>";
                 echo "<td>{$videojuego->getTitulo()}</td>";
                 echo "<td>{$videojuego->getAnioPublicacion()}</td>";
@@ -71,9 +61,8 @@ class Main {
         }
 
         if (!$encontrado) {
-            echo "<tr><td colspan='6'>No hay videojuegos para la plataforma '{$plataforma}'</td></tr>";
+            echo "<tr><td colspan='6' class='text-danger fw-bold text-center'>No hay videojuegos para '{$plataforma}'</td></tr>";
         }
-
-        echo "</table>";
     }
+
 }
