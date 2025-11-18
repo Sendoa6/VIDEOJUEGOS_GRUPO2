@@ -15,7 +15,7 @@
 <body>
 
     <!-- HEADER -->
-    <header class="bg-light border-bottom py-3 d-flex align-items-center justify-content-center px-4 gap-3">
+    <header class="bg-light border-bottom py-3 d-flex px-4">
         <a href="index.php"><img src="../imagenes/logoGame.png" alt="GAME" class="img-fluid header-img"></a>
 
         <h1 class="text-center m-0 flex-grow-1">GESTIÓN DE VIDEOJUEGOS</h1>
